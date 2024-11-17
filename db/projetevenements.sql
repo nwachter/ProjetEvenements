@@ -365,7 +365,7 @@ INSERT INTO `utilisateur` (`idUtilisateur`, `nom`, `designation`, `prenom`, `ema
 (98, 'Ateridge', NULL, 'Adrianne', 'aateridge2p@buzzfeed.com', 'oI8<P9kWJZ.{0Re>', '[\"Administrateur\"]'),
 (99, 'MacCaig', NULL, 'Nessi', 'nmaccaig2q@unicef.org', 'fP4<`)\"S20iu*', '[\"Organisateur\"]'),
 (100, 'Izakoff', NULL, 'Valerie', 'vizakoff2r@businessinsider.com', 'eQ1{I*5,(D<', '[\"Administrateur\"]'),
-(117, 'Wachter', NULL, 'Nina', 'ninaw4c@gmail.com', '$2y$10$VSugEqnRxZ8rz4rqx6WfOuzYDUwmYRPJGCIYv9MTtJ/yDoL9Lbzx.', '[\"Administrateur\"]'),
+(117, 'Wachter', NULL, 'Nina', 'secret@gmail.com', '$2y$10$VSugEqnRxZ8rz4rqx6WfOuzYDUwmYRPJGCIYv9MTtJ/yDoL9Lbzx.', '[\"Administrateur\"]'),
 (118, 'Admin', 'Admin', 'Admin', 'admin@gmail.com', '$2y$10$YWap0a52qwDsNpluoE0NPedjm6mOcRpl2immsRQkAXKQk4AJhJR8y', '[\"Administrateur\", \"Utilisateur\", \"Organisateur\"]'),
 (119, 'UtilOrga', 'UtilOrga', 'UtilOrga', 'UtilOrga@gmail.com', '$2y$10$C1M7tJJ1kHDo4sByOIc50Od9rQIrPN3uBtLZkzJgQC8V5MGUB.cJK', '[\"Organisateur\", \"Utilisateur\"]'),
 (121, 'DeuxiemeOrga', 'DeuxiemeOrga', 'DeuxiemeOrga', 'DeuxiemeOrga@gmail.com', '$2y$10$51FCyEHsVodK0QQjgPSPd.6hgPX6UkQUW0ahrStSmLoMAswFo2VU6', '[\"Organisateur\"]'),
