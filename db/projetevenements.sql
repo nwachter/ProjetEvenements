@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1:3306
--- Généré le : dim. 20 oct. 2024 à 23:32
+-- Généré le : dim. 17 nov. 2024 à 22:53
 -- Version du serveur : 8.3.0
--- Version de PHP : 8.1.28
+-- Version de PHP : 8.2.18
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -48,28 +48,28 @@ CREATE TABLE IF NOT EXISTS `evenement` (
 --
 
 INSERT INTO `evenement` (`idEvenement`, `titre`, `description`, `dateEvenement`, `nbPlaces`, `image`, `actif`, `idLieu`, `idUtilisateur`) VALUES
-(1, 'Duel at Diablo', 'Découvrez une soirée jazz exceptionnelle avec des artistes de renommée mondiale. Plongez dans une ambiance feutrée où la musique vous transportera dans un univers raffiné et mélodieux.', '2024-07-11 00:00:00', 679, '/public/assets/images/events/10.jpg', 1, 1, 1),
-(2, 'Deceit', 'Participez à notre conférence sur les technologies émergentes. Des experts vous présenteront les dernières innovations dans le domaine de l\'intelligence artificielle et de la blockchain.', '2025-03-04 00:00:00', 570, '/public/assets/images/events/11.jpg', 1, 2, 2),
-(3, 'The Secret of Convict Lake', 'Rejoignez-nous pour une randonnée guidée au cœur des montagnes. Une expérience immersive dans la nature, idéale pour se ressourcer et admirer des paysages à couper le souffle.', '2025-01-10 00:00:00', 805, '/public/assets/images/events/12.jpg', 1, 3, 3),
-(4, 'Tora-san\'s Love Call (Otoko wa tsurai yo: Torajiro koiuta)', 'Assistez à notre festival de cinéma en plein air. Profitez de projections sous les étoiles, avec une sélection des meilleurs films d\'auteur, accompagnés de débats avec les réalisateurs.', '2026-10-22 00:00:00', 106, '/public/assets/images/events/13.jpg', 1, 4, 4),
-(5, 'Before the Fall (NaPolA - Elite für den Führer)', 'Venez déguster les vins les plus raffinés de notre région lors de ce salon unique. Rencontrez des vignerons passionnés et découvrez les secrets de leur savoir-faire.', '2024-02-06 00:00:00', 861, '/public/assets/images/events/14.jpg', 1, 5, 5),
-(6, 'Bright Lights', 'Ne manquez pas notre marché artisanal où créateurs locaux exposeront leurs œuvres. Une opportunité de découvrir des produits uniques et de soutenir l\'artisanat de notre région.', '2024-04-03 00:00:00', 533, '/public/assets/images/events/15.jpg', 1, 6, 6),
-(7, 'Turning Tide (En solitaire)', 'Participez à un atelier de cuisine avec un chef étoilé. Apprenez les techniques de la gastronomie française et réalisez des plats qui épateront vos invités.', '2024-04-22 00:00:00', 915, '/public/assets/images/events/16.jpg', 1, 7, 7),
-(8, 'Ryan', 'Venez célébrer la Fête de la Musique avec nous ! Des artistes locaux joueront en live dans différents lieux de la ville. Une journée riche en découvertes musicales.', '2025-04-01 00:00:00', 327, '/public/assets/images/events/17.jpg', 1, 8, 8),
-(9, 'London', 'Rejoignez notre exposition d\'art contemporain qui rassemble des œuvres audacieuses de jeunes talents. Une immersion dans des univers créatifs et originaux.', '2024-01-29 00:00:00', 265, '/public/assets/images/events/18.jpg', 1, 9, 9),
-(10, 'Those Magnificent Men in Their Flying Machines', 'Participez à notre tournoi de tennis ouvert à tous les niveaux. Une compétition amicale qui se déroulera dans une ambiance conviviale, avec des prix à gagner.', '2024-08-10 00:00:00', 305, '/public/assets/images/events/19.jpg', 1, 10, 10),
+(1, 'Duel at Diablo', 'Découvrez une soirée jazz exceptionnelle avec des artistes de renommée mondiale. Plongez dans une ambiance feutrée où la musique vous transportera dans un univers raffiné et mélodieux.', '2024-07-11 00:00:00', 679, '/public/assets/images/events/10.jpg', 1, 1, 118),
+(2, 'Deceit', 'Participez à notre conférence sur les technologies émergentes. Des experts vous présenteront les dernières innovations dans le domaine de l\'intelligence artificielle et de la blockchain.', '2025-03-04 00:00:00', 570, '/public/assets/images/events/11.jpg', 1, 2, 118),
+(3, 'The Secret of Convict Lake', 'Rejoignez-nous pour une randonnée guidée au cœur des montagnes. Une expérience immersive dans la nature, idéale pour se ressourcer et admirer des paysages à couper le souffle.', '2025-01-10 00:00:00', 805, '/public/assets/images/events/12.jpg', 1, 3, 118),
+(4, 'Tora-san\'s Love Call (Otoko wa tsurai yo: Torajiro koiuta)', 'Assistez à notre festival de cinéma en plein air. Profitez de projections sous les étoiles, avec une sélection des meilleurs films d\'auteur, accompagnés de débats avec les réalisateurs.', '2026-10-22 00:00:00', 106, '/public/assets/images/events/13.jpg', 1, 4, 118),
+(5, 'Before the Fall (NaPolA - Elite für den Führer)', 'Venez déguster les vins les plus raffinés de notre région lors de ce salon unique. Rencontrez des vignerons passionnés et découvrez les secrets de leur savoir-faire.', '2024-02-06 00:00:00', 861, '/public/assets/images/events/14.jpg', 1, 5, 118),
+(6, 'Bright Lights', 'Ne manquez pas notre marché artisanal où créateurs locaux exposeront leurs œuvres. Une opportunité de découvrir des produits uniques et de soutenir l\'artisanat de notre région.', '2024-04-03 00:00:00', 533, '/public/assets/images/events/15.jpg', 1, 6, 118),
+(7, 'Turning Tide (En solitaire)', 'Participez à un atelier de cuisine avec un chef étoilé. Apprenez les techniques de la gastronomie française et réalisez des plats qui épateront vos invités.', '2024-04-22 00:00:00', 915, '/public/assets/images/events/16.jpg', 1, 7, 118),
+(8, 'Ryan', 'Venez célébrer la Fête de la Musique avec nous ! Des artistes locaux joueront en live dans différents lieux de la ville. Une journée riche en découvertes musicales.', '2025-04-01 00:00:00', 327, '/public/assets/images/events/17.jpg', 1, 8, 118),
+(9, 'London', 'Rejoignez notre exposition d\'art contemporain qui rassemble des œuvres audacieuses de jeunes talents. Une immersion dans des univers créatifs et originaux.', '2024-01-29 00:00:00', 265, '/public/assets/images/events/18.jpg', 1, 9, 118),
+(10, 'Those Magnificent Men in Their Flying Machines', 'Participez à notre tournoi de tennis ouvert à tous les niveaux. Une compétition amicale qui se déroulera dans une ambiance conviviale, avec des prix à gagner.', '2024-08-10 00:00:00', 305, '/public/assets/images/events/19.jpg', 1, 10, 118),
 (11, 'Hunger', 'Ne manquez pas notre gala de charité annuel. Une soirée élégante avec un dîner de gala et une vente aux enchères au profit d\'associations locales.', '2026-04-06 00:00:00', 918, '/public/assets/images/events/2.jpg', 1, 11, 11),
 (12, 'Until Death', 'Venez assister à un spectacle de danse contemporaine qui mêle poésie et performance physique. Un événement captivant qui repousse les limites de l\'expression corporelle.', '2024-10-17 00:00:00', 194, '/public/assets/images/events/20.jpg', 1, 12, 12),
 (13, 'What If ...', 'Participez à notre journée de bénévolat. Contribuez à des projets communautaires et faites la différence dans votre quartier, tout en rencontrant des personnes partageant les mêmes valeurs.', '2025-06-28 00:00:00', 462, '/public/assets/images/events/21.jpg', 1, 13, 13),
-(14, 'Tiger\'s Tail, The', 'Assistez à un concert symphonique où un orchestre de renom interprétera les œuvres classiques des plus grands compositeurs. Une soirée d\'exception pour les amateurs de musique.', '2026-05-24 00:00:00', 600, '/public/assets/images/events/3.jpg', 1, 14, 14),
-(15, 'Space Pirate Captain Harlock', 'Rejoignez-nous pour une conférence sur le développement durable. Des experts discuteront des enjeux environnementaux actuels et des solutions pour un avenir plus vert.', '2025-12-22 00:00:00', 928, '/public/assets/images/events/4.jpg', 1, 15, 15),
+(14, 'Tiger\'s Tail, The', 'Assistez à un concert symphonique où un orchestre de renom interprétera les œuvres classiques des plus grands compositeurs. Une soirée d\'exception pour les amateurs de musique.', '2026-05-24 00:00:00', 600, '/public/assets/images/events/3.jpg', 1, 14, 118),
+(15, 'Space Pirate Captain Harlock', 'Rejoignez-nous pour une conférence sur le développement durable. Des experts discuteront des enjeux environnementaux actuels et des solutions pour un avenir plus vert.', '2025-12-22 00:00:00', 928, '/public/assets/images/events/4.jpg', 1, 15, 118),
 (16, 'Stage Door Canteen', 'Participez à une soirée quiz entre amis. Testez vos connaissances sur des sujets variés, dans une ambiance ludique et conviviale, avec des prix à gagner pour les meilleurs.', '2026-10-16 00:00:00', 719, '/public/assets/images/events/5.jpg', 1, 16, 1),
-(17, 'Conman (Du Xia 1999)', 'Venez découvrir notre salon du livre où auteurs et éditeurs présenteront leurs dernières publications. Rencontrez vos auteurs préférés et assistez à des séances de dédicaces.', '2026-11-02 00:00:00', 415, '/public/assets/images/events/6.jpg', 1, 17, 2),
+(17, 'Conman (Du Xia 1999)', 'Venez découvrir notre salon du livre où auteurs et éditeurs présenteront leurs dernières publications. Rencontrez vos auteurs préférés et assistez à des séances de dédicaces.', '2026-11-02 00:00:00', 415, '/public/assets/images/events/6.jpg', 1, 17, 118),
 (18, 'Food of Love (Manjar de Amor)', 'Ne manquez pas notre compétition de peinture en plein air. Une journée créative où des artistes exprimeront leur talent en capturant la beauté des paysages environnants.', '2024-07-10 00:00:00', 676, '/public/assets/images/events/7.jpg', 1, 18, 5),
 (19, 'Soldier in the Rain', 'Rejoignez-nous pour un atelier de méditation en plein air. Un moment de détente et de recentrage pour vous reconnecter à la nature et à vous-même, dans un cadre apaisant.', '2024-01-15 00:00:00', 608, '/public/assets/images/events/8.jpg', 1, 19, 3),
 (20, 'Éclats de Scène : Quand les Classiques Rencontrent l’Audace', 'Assistez à notre soirée de théâtre amateur où des comédiens passionnés interpréteront des classiques revisités. Une occasion de découvrir des talents émergents.', '2025-03-25 18:00:00', 200, '/public/assets/images/events/event_671435a2295f63.91693886.png', 1, 20, 118),
-(107, 'titre', 'description', '2024-10-19 00:14:00', 1, '/public/assets/images/events/event_67142f4936e3c6.23240771.jpg', 0, 105, 118),
-(108, 'titre', 'description', '2024-10-19 00:14:00', 1, '/public/assets/images/events/event_67142f6a48b079.99108121.jpg', 0, 106, 118);
+(107, 'Lorem ipsum', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2024-10-19 00:14:00', 1, '/public/assets/images/events/event_67142f4936e3c6.23240771.jpg', 0, 105, 118),
+(108, 'Lorem ipsum', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2024-10-19 00:14:00', 1, '/public/assets/images/events/event_67142f6a48b079.99108121.jpg', 0, 106, 118);
 
 -- --------------------------------------------------------
 
@@ -113,8 +113,8 @@ INSERT INTO `inscrire` (`idEvenement`, `idUtilisateur`) VALUES
 (1, 118),
 (2, 118),
 (3, 118),
-(4, 118),
 (8, 118),
+(11, 118),
 (13, 118);
 
 -- --------------------------------------------------------
@@ -235,12 +235,12 @@ INSERT INTO `lieu` (`idLieu`, `nomLieu`) VALUES
 (98, '916 Pawling Street'),
 (99, '3 Del Sol Pass'),
 (100, '4764 West Plaza'),
-(101, 'SUPERNEWEVENT'),
-(102, 'VICTOIRYPLZ'),
-(103, 'VICTOIRYPLZ'),
-(104, 'RETESTIDLIEU'),
-(105, 'nomLieu2'),
-(106, 'nomLieuOrganize');
+(101, 'Lieu lorem ipsum'),
+(102, 'Lieu lorem ipsum 2'),
+(103, 'Lieu lorem ipsum 3'),
+(104, 'Lieu lorem ipsum 4'),
+(105, 'Lieu lorem ipsum 5'),
+(106, 'Lieu lorem ipsum 6');
 
 -- --------------------------------------------------------
 
@@ -370,7 +370,7 @@ INSERT INTO `utilisateur` (`idUtilisateur`, `nom`, `designation`, `prenom`, `ema
 (119, 'UtilOrga', 'UtilOrga', 'UtilOrga', 'UtilOrga@gmail.com', '$2y$10$C1M7tJJ1kHDo4sByOIc50Od9rQIrPN3uBtLZkzJgQC8V5MGUB.cJK', '[\"Organisateur\", \"Utilisateur\"]'),
 (121, 'DeuxiemeOrga', 'DeuxiemeOrga', 'DeuxiemeOrga', 'DeuxiemeOrga@gmail.com', '$2y$10$51FCyEHsVodK0QQjgPSPd.6hgPX6UkQUW0ahrStSmLoMAswFo2VU6', '[\"Organisateur\"]'),
 (122, 'DeuxiemeOrga', 'DeuxiemeOrga', 'DeuxiemeOrga', 'DeuxiemeOrga@gmail.com', '$2y$10$jdg1ZEjXVPtit5e/Lr5wB.pwz/CEsHe275.0Pn8kSjx/aQGdLGa5K', '[\"Organisateur\"]'),
-(123, 'SANSORGA', NULL, 'SANSORGA', 'SANSORGA@gmail.com', '$2y$10$7gxyvb06S8bMzwHSrBOGIum565Lmno3LzS7JKCXFkLpa/7QLsDXie', '[\"Organisateur\"]');
+(123, 'Ypsum', NULL, 'Lauren', 'ypsum-lauren@gmail.com', '$2y$10$7gxyvb06S8bMzwHSrBOGIum565Lmno3LzS7JKCXFkLpa/7QLsDXie', '[\"Organisateur\"]');
 
 --
 -- Contraintes pour les tables déchargées
