@@ -1,0 +1,135 @@
+@import url(./shared/index.css);
+
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
+
+:root {
+	--primaryColor: lightsteelblue;
+	--secondaryColor: #27183c;
+	--rimouski: 'Rimouski', 'Corben', 'Segdwick Ave Display', 'Jost', 'Arial', sans-serif;
+
+	--echo-deco: 'Echo Decorative', sans-serif;
+	--segdwick-ave-display: 'Segdwick Ave Display', sans-serif;
+	--neon-club-music: 'Neon Club Music', sans-serif;
+	--wavefont: 'Wavefont', sans-serif;
+	--jost-sans-serif: 'Jost', sans-serif;
+	--montserrat: 'Montserrat', 'Corben', 'Segdwick Ave Display', 'Jost', 'Arial', sans-serif, sans-serif;
+}
+
+
+* {
+	margin: 0;
+	padding: 0;
+	font-family: var(--montserrat);
+	box-sizing: border-box;
+
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100vw;
+	height: 100vh;
+}
+
+
+label {
+	font-weight: 300;
+	font-family: var(--rimouski);
+}
+
+main {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.link {
+	text-decoration: underline;
+	color: #fdb20b;
+	font-weight: 500;
+	transition: all 0.2s ease;
+	font-size: 13px;
+}
+
+.link:hover {
+	--tw-brightness: brightness(1.25);
+	filter: brightness(1.25);
+}
+
+.link:active {
+	--tw-brightness: brightness(.9);
+	filter: brightness(.9);
+}
+
+.column-reverse {
+	flex-direction: row-reverse;
+}
+
+
+
+
+@keyframes wave {
+	0% {
+		transform: translateY(0);
+	}
+
+	50% {
+		transform: translateY(-20px);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
+}
+
+.letter {
+	display: inline-block;
+	animation: wave 1s ease-in-out infinite;
+}
+
+.letter:nth-child(odd) {
+	animation-delay: calc(0.1s * var(--i));
+}
+
+.letter:nth-child(even) {
+	animation-delay: calc(0.1s * var(--i) + 0.5s);
+}
+
+.font-wavefont {
+	font-family: 'Wave Font', sans-serif;
+	display: inline-block;
+	text-align: center;
+}
+
+/*Search bar*/
+
+/* Custom styles for the open state */
+.search.open {
+	width: 420px;
+}
+
+.search.open .search-icon {
+	width: 60px;
+	height: 60px;
+	border-radius: 60px;
+}
+
+.search.open .search-icon .rotate {
+	transform: rotate(52deg);
+	width: 3px;
+	height: 18px;
+}
+
+.search.open .search-icon .rotate:last-child {
+	transform: rotate(-230deg);
+	width: 3px;
+	height: 18px;
+}
+
+/* #gradient_border {
+	background-image: url(../images/elements/gradient_border.svg);
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center
+} */

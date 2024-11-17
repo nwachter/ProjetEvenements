@@ -1,0 +1,102 @@
+// header {
+//     z-index: 100;
+//     height: 13rem; // Equivalent to h-52
+//     width: 100%; // Full width
+//     display: grid;
+//     grid-template-columns: repeat(6, 1fr);
+//     justify-content: space-between;
+//     align-items: center;
+//     background-color: #05031b;
+
+//     // Logo Styling
+//     #logo {
+//         object-fit: contain;
+//         flex-shrink: 1;
+//         grid-column: span 1;
+//         height: 13rem; // Equivalent to h-52
+//     }
+
+//     // Navigation Styles
+//     nav {
+//         width: 100%;
+//         font-weight: bold;
+//         grid-column: span 5;
+//         color: white;
+//         height: 100%;
+//         padding: 0 4rem; // Equivalent to px-16
+//         display: flex;
+//         flex-direction: column;
+//         justify-content: center;
+
+//         ul {
+//             display: flex;
+//             height: 100%;
+//             align-items: center;
+//             justify-content: space-between;
+//             font-size: 1.125rem; // Equivalent to text-lg
+//             font-weight: 400; // Equivalent to font-base
+//             margin: 0 auto 0.5rem; // Equivalent to mx-auto mb-2
+
+//             li {
+//                 position: relative;
+
+//                 a {
+//                     // Add any specific styles for links here
+//                 }
+
+//                 // User Menu Button
+//                 &.relative {
+//                     #userMenuButton {
+//                         position: fixed;
+//                         z-index: 100;
+//                         display: flex;
+//                         align-items: center;
+//                         outline: none;
+
+//                         svg {
+//                             width: 35px;
+//                             height: 35px;
+//                             fill: currentColor;
+//                         }
+
+//                         .closeIcon {
+//                             font-family: 'Material Icons';
+//                             color: red;
+//                             font-weight: 800; // Equivalent to font-extrabold
+//                             font-size: 1rem; // Equivalent to text-md
+//                         }
+//                     }
+
+//                     // User Menu Dropdown
+//                     #userMenu {
+//                         display: none; // Initially hidden
+//                         position: absolute;
+//                         right: 0;
+//                         margin-top: 0.5rem; // Equivalent to mt-2
+//                         width: 12rem; // Equivalent to w-48
+//                         background-color: white;
+//                         color: black;
+//                         border-radius: 0.5rem; // Equivalent to rounded-lg
+//                         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Equivalent to shadow-lg
+
+//                         li {
+//                             a {
+//                                 display: block;
+//                                 padding: 0.5rem 1rem; // Equivalent to px-4 py-2
+
+//                                 &:hover {
+//                                     background-color: #f7fafc; // Equivalent to hover:bg-gray-100
+//                                 }
+//                             }
+//                         }
+//                     }
+//                 }
+
+//                 // Administration Link (conditional)
+//                 &#administrationLink {
+//                     // Add any specific styles for administration link here
+//                 }
+//             }
+//         }
+//     }
+// }

@@ -1,0 +1,98 @@
+.search {
+    width: 48px;
+    height: 48px;
+    background-color: #242628;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+    border-radius: 15px;
+}
+
+.search::before {
+    content: '';
+    display: block;
+    width: 2px;
+    height: 100%;
+    position: relative;
+    /* background-color: #00FEDE; */
+    background-color: #6366f1;
+    transition: all 0.5s ease;
+}
+
+.search.open {
+    width: 240px;
+}
+
+.search.open::before {
+    height: 30px;
+    margin: 9px 0 9px 15px;
+    position: absolute;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+    /* border: 2px solid #00FEDE; */
+    border: 2px solid #6366f1;
+
+    display: block;
+    position: relative;
+    transition: all 0.5s ease;
+}
+
+.search-icon::before,
+.search-icon::after {
+    content: '';
+    width: 2px;
+    height: 8px;
+    position: absolute;
+    display: block;
+    /* background-color: #00FEDE; */
+    background-color: #6366f1;
+    transition: all 0.5s ease;
+}
+
+.search-icon::before {
+    right: -1px;
+    top: 15px;
+    transform: rotate(-45deg);
+}
+
+.search-icon::after {
+    right: -6px;
+    top: 20px;
+    transform: rotate(-45deg);
+}
+
+.open .search-icon {
+    margin: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+}
+
+.open .search-icon::before {
+    transform: rotate(52deg);
+    right: 11px;
+    top: 11px;
+    height: 9px;
+}
+
+.open .search-icon::after {
+    transform: rotate(-230deg);
+    right: 11px;
+    top: 6px;
+    height: 9px;
+}
+
+/* New Search Icon */
+
+.search i {
+    height: 200px;
+    width: 200px;
+    color: #6366f1;
+
+}
+
+/* https://codepen.io/ShortCode/pen/jOrBeOw */

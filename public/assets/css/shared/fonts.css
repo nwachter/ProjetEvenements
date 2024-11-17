@@ -1,0 +1,28 @@
+@font-face {
+    font-family: 'Neon Club Music';
+    src: url('../../fonts/neon-club-music/NEON\ CLUB\ MUSIC.otf') format('truetype');
+    font-weight: normal, bold, bolder;
+    font-style: normal, italic;
+}
+
+@font-face {
+    font-family: 'Segdwick Ave Display';
+    src: url('../../fonts/sedgwick-ave-display/OFL.txt') format('opentype');
+    font-weight: normal, bold, bolder;
+    font-style: normal, italic;
+}
+
+@font-face {
+    font-family: 'Rimouski Sb Regular';
+    src: url('../../fonts/rimouski/rimouski\ sb.otf') format('truetype');
+    font-weight: normal, bold, bolder;
+    font-style: normal, italic;
+}
+
+
+@font-face {
+    font-family: 'Echo Decorative';
+    src: url('../../fonts/echo-deco/EchoDeco.ttf') format('truetype');
+    font-weight: normal, bold, bolder;
+    font-style: normal, italic;
+}

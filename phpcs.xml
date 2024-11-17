@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<ruleset name="Custom PHP CodeSniffer Rules">
+
+    <!-- Base coding standard (PSR12 or PSR2) -->
+    <rule ref="PSR12"/>
+
+    <!-- Exclude unnecessary or non-important errors -->
+
+    <!-- Ignore missing doc comments for functions, classes, and variables -->
+    <exclude name="Squiz.Commenting.FunctionComment.Missing"/>
+    <exclude name="Squiz.Commenting.ClassComment.Missing"/>
+    <exclude name="Squiz.Commenting.VariableComment.Missing"/>
+
+    <!-- Ignore missing doc tags (param, return) in function comments -->
+    <exclude name="Squiz.Commenting.FunctionComment.MissingParamTag"/>
+    <exclude name="Squiz.Commenting.FunctionComment.MissingReturnTag"/>
+
+    <!-- Ignore incorrect case for PHP constants (NULL, TRUE, FALSE) -->
+    <exclude name="Generic.PHP.LowerCaseConstant.Found"/>
+
+    <!-- Ignore function complexity rules (number of conditions, depth) -->
+    <exclude name="Generic.Metrics.CyclomaticComplexity.TooHigh"/>
+    <exclude name="Generic.Metrics.NestingLevel.TooHigh"/>
+
+    <!-- Ignore strict comparisons (=== vs ==) -->
+    <exclude name="Generic.PHP.StrictComparisons"/>
+
+    <!-- Ignore whitespace and indentation warnings -->
+    <exclude name="Generic.WhiteSpace.ScopeIndent.Incorrect"/>
+    <exclude name="Squiz.WhiteSpace.SuperfluousWhitespace.StartFile"/>
+    <exclude name="Squiz.WhiteSpace.SuperfluousWhitespace.EndFile"/>
+    <exclude name="Squiz.WhiteSpace.SuperfluousWhitespace.InsufficientLinesAfterCurlyOpen"/>
+
+    <!-- Ignore line length (80/120 character limits) -->
+    <exclude name="Generic.Files.LineLength.TooLong"/>
+
+    <!-- Ignore inline control structure formatting -->
+    <exclude name="Generic.ControlStructures.InlineControlStructure.NotAllowed"/>
+
+    <!-- Ignore unused 'use' statements -->
+    <exclude name="PSR12.Files.ImportStatement.UnusedUse"/>
+
+    <!-- Ignore operator spacing issues -->
+    <exclude name="Squiz.WhiteSpace.OperatorSpacing.SpacingAfter"/>
+    <exclude name="Squiz.WhiteSpace.OperatorSpacing.SpacingBefore"/>
+
+    <!-- Ignore spacing around commas in function calls/array declarations -->
+    <exclude name="Squiz.WhiteSpace.FunctionSpacing.Before"/>
+    <exclude name="Squiz.WhiteSpace.FunctionSpacing.After"/>
+
+     <!-- Ignore end of line character differences (\n vs \r\n) -->
+    <exclude name="Generic.Files.LineEndings.InvalidEOLChar"/>
+
+    <!-- Ignore spaces vs tabs for indentation -->
+    <exclude name="Generic.WhiteSpace.DisallowTabIndent"/>
+
+    <!-- Ignore blank lines before opening braces -->
+    <exclude name="Squiz.WhiteSpace.ControlStructureSpacing.SpacingBeforeOpen"/>
+
+    <!-- Ignore inline control structures -->
+    <exclude name="Generic.ControlStructures.InlineControlStructure.NotAllowed"/>
+
+    <!-- Ignore lines exceeding 120 characters -->
+    <exclude name="Generic.Files.LineLength.TooLong"/>
+
+    <!-- Add file extensions to check (by default only .php files are included) -->
+    <fileExtensions>
+        <ext>php</ext>
+        <ext>inc</ext>
+    </fileExtensions>
+
+    <!-- Optionally set a maximum file size for scanning (in bytes) -->
+    <limit>1048576</limit> <!-- 1 MB -->
+
+    <!-- Define directories and files to exclude from linting -->
+    <exclude-pattern>*/vendor/*</exclude-pattern>
+    <exclude-pattern>*/node_modules/*</exclude-pattern>
+</ruleset>
