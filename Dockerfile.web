@@ -1,0 +1,33 @@
+FROM php:apache
+
+WORKDIR /var/www/html
+
+# Install system dependencies
+RUN apt-get update && apt-get install -y \
+    git \
+    zip \
+    unzip \
+    libpng-dev \
+    libzip-dev \
+    libonig-dev \
+    libxml2-dev \
+    npm \
+    && docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd zip
+
+# Copy application foles (with .dockerignore for exclusions, excluding /bin since useless here)
+COPY . ./ProjetEvenements \
+    --exclude=./bin
+
+# Install PHP dependencies
+RUN if [ -f "composer.json" ]; then composer install --no-dev --optimize-autoloader; fi
+
+# Install and build frontend assets (only if package.json exists)
+RUN if [ -f "package.json" ]; then npm install && npm run build; fi
+
+# Set proper permissions for Apache
+RUN chown -R www-data:www-data /var/www/html \
+    && a2enmod rewrite
+
+EXPOSE 80
+
+CMD ["apache2-foreground"]

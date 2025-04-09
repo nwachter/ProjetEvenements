@@ -1,0 +1,9 @@
+FROM mysql:8.0
+
+COPY ./db/mysql-init-scripts/init.sql /docker-entrypoint-initdb.d/
+
+EXPOSE 3306
+
+# Healthcheck (recommended)
+HEALTHCHECK --interval=30s --timeout=5s --retries=3 \
+  CMD mysqladmin ping -uroot -p${MYSQL_ROOT_PASSWORD} || exit 1

@@ -3,6 +3,11 @@
 
 # ignore .env
 .env
+.env.db
+
+#ignore mysql root pass
+db/password.txt
+db/root_password.txt
 
 # ignore ALL files in ANY directory named temp
 temp/
