@@ -233,7 +233,7 @@
                 return;
             }
 
-            $event = getEventsWithEnrolledAmount(" WHERE e.idEvenement=" . intval($params['idEvenement']), "all");
+            $event = getEventsWithEnrolledAmount(" WHERE e.idEvenement=" . intval($params['idEvenement']), -1, "all");
             if (!$event) {
                 echo "L'évènement n'existe pas";
                 return;

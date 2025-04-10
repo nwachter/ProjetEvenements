@@ -50,9 +50,10 @@ class Image
 
     public function makeLinksArray()
     {
-        $rootPath = $_SERVER['DOCUMENT_ROOT'] . '/ProjetEvenements';
+        // require_once __DIR__ . '/bootstrap.php';
 
-        $folderPath = $rootPath . '/public/assets/images/events';
+
+        $folderPath = $GLOBALS['rootPath'] . '/public/assets/images/events';
         $imageFiles = glob($folderPath . '/*.{jpg,jpeg,png,gif}', GLOB_BRACE);
 
         $images = [];
@@ -67,7 +68,7 @@ class Image
 
     public static function makeNewLinksArray()
     {
-        $rootPath = $_SERVER['DOCUMENT_ROOT'] . '/ProjetEvenements';
+        $rootPath = $GLOBALS['rootPath'] . '/ProjetEvenements';
 
         $folderPath = $rootPath . '/public/assets/images/events';
         $imageFiles = glob($folderPath . '/*.{jpg,jpeg,png,gif}', GLOB_BRACE);

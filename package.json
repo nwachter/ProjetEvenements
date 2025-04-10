@@ -5,9 +5,17 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-      "build:css": "npx tailwindcss -i ./src/input.css -o ./public/assets/css/output.css --watch"
+    "build:css": "npx tailwindcss -i ./src/input.css -o ./public/assets/css/output.css --watch",
+    "dev": "npx @tailwindcss/cli -i ./src/input.css -o ./public/assets/css/output.css --watch"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC"
+  "author": "Nina Wachter",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "projetevenements"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.17"
+  }
 }

@@ -13,6 +13,18 @@
 	--wavefont: 'Wavefont', sans-serif;
 	--jost-sans-serif: 'Jost', sans-serif;
 	--montserrat: 'Montserrat', 'Corben', 'Segdwick Ave Display', 'Jost', 'Arial', sans-serif, sans-serif;
+
+	--primary-bg: #05031b;
+	--primary-accent: #fdb20b;
+	--primary-text: #ffffff;
+	--secondary-text: #e5e7eb;
+	--card-bg: #0a0627;
+	--input-bg: #05031b;
+	--input-border: rgba(253, 178, 11, 0.3);
+	--input-focus: rgba(253, 178, 11, 0.5);
+	--button-hover: rgba(253, 178, 11, 0.8);
+	--shadow-color: rgba(253, 178, 11, 0.2);
+	--error-color: #ff4d6d;
 }
 
 
@@ -23,6 +35,11 @@
 	box-sizing: border-box;
 
 }
+
+html {
+	scroll-behavior: smooth;
+}
+
 
 body {
 	display: flex;
@@ -44,13 +61,36 @@ main {
 	align-items: center;
 }
 
-.link {
+
+::-webkit-scrollbar {
+	width: 10px;
+}
+
+::-webkit-scrollbar-track {
+	background: #05031b;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #fdb20b;
+	border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #fdb20b80;
+}
+
+::selection {
+	background-color: #fdb20b;
+	color: #05031b;
+}
+
+/* .link {
 	text-decoration: underline;
 	color: #fdb20b;
 	font-weight: 500;
 	transition: all 0.2s ease;
 	font-size: 13px;
-}
+} */
 
 .link:hover {
 	--tw-brightness: brightness(1.25);
@@ -66,26 +106,79 @@ main {
 	flex-direction: row-reverse;
 }
 
-
-
-
-@keyframes wave {
-	0% {
-		transform: translateY(0);
-	}
-
-	50% {
-		transform: translateY(-20px);
-	}
-
-	100% {
-		transform: translateY(0);
-	}
+/* Anim déroulante pour les sound waves */
+.marquee-container {
+	width: 100%;
+	overflow: hidden;
 }
+
+.marquee-content {
+	display: inline-block;
+	white-space: nowrap;
+	animation: marquee 30s linear infinite;
+}
+
+
+.ninja-events:hover {
+	text-shadow: 0 0 15px rgba(253, 178, 11, 0.7), 0 0 30px rgba(253, 178, 11, 0.4);
+}
+
+.btn-primary {
+	background-color: var(--primary-accent);
+	color: var(--primary-bg);
+	font-weight: 600;
+	padding: 0.75rem 1.5rem;
+	border-radius: 0.5rem;
+	transition: all 0.3s ease;
+	box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.btn-primary:hover {
+	background-color: var(--button-hover);
+	transform: translateY(-2px);
+	box-shadow: 0 10px 15px -3px var(--shadow-color), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.card {
+	background-color: var(--card-bg);
+	border-radius: 1rem;
+	border: 1px solid rgba(253, 178, 11, 0.1);
+	padding: 1.5rem;
+	box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+	transition: all 0.3s ease;
+}
+
+.card:hover {
+	transform: translateY(-5px);
+	box-shadow: 0 20px 25px -5px var(--shadow-color), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.input {
+	background-color: var(--input-bg);
+	color: var(--primary-text);
+	border: 1px solid var(--input-border);
+	border-radius: 0.5rem;
+	padding: 0.75rem 1rem;
+	transition: all 0.3s ease;
+}
+
+.input:focus {
+	outline: none;
+	border-color: var(--primary-accent);
+	box-shadow: 0 0 0 3px var(--input-focus);
+}
+
+
+
 
 .letter {
 	display: inline-block;
 	animation: wave 1s ease-in-out infinite;
+}
+
+.letter:hover {
+	transform: translateY(-5px);
+	color: var(--primary-accent);
 }
 
 .letter:nth-child(odd) {
@@ -104,7 +197,7 @@ main {
 
 /*Search bar*/
 
-/* Custom styles for the open state */
+
 .search.open {
 	width: 420px;
 }
@@ -125,6 +218,68 @@ main {
 	transform: rotate(-230deg);
 	width: 3px;
 	height: 18px;
+}
+
+@keyframes pulse {
+
+	0%,
+	100% {
+		opacity: 1;
+	}
+
+	50% {
+		opacity: 0.7;
+	}
+}
+
+@keyframes float {
+
+	0%,
+	100% {
+		transform: translateY(0);
+	}
+
+	50% {
+		transform: translateY(-10px);
+	}
+}
+
+@keyframes glow {
+
+	0%,
+	100% {
+		text-shadow: 0 0 5px rgba(253, 178, 11, 0.5), 0 0 15px rgba(253, 178, 11, 0.3);
+	}
+
+	50% {
+		text-shadow: 0 0 10px rgba(253, 178, 11, 0.7), 0 0 20px rgba(253, 178, 11, 0.5);
+	}
+}
+
+@keyframes marquee {
+	0% {
+		transform: translateX(100%);
+	}
+
+	100% {
+		transform: translateX(-100%);
+	}
+}
+
+
+
+@keyframes wave {
+	0% {
+		transform: translateY(0);
+	}
+
+	50% {
+		transform: translateY(-20px);
+	}
+
+	100% {
+		transform: translateY(0);
+	}
 }
 
 /* #gradient_border {

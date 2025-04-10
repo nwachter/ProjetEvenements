@@ -24,5 +24,9 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <script type="module" defer src=<?= $GLOBALS['rootUrl'] . "/public/assets/js/" . ($page !== "accueil" ? $page : "script") . ".js" ?>></script>
+    <!--<script type="module" defer src=<?= $GLOBALS['rootUrl'] . "/public/assets/js/" . ($page !== "accueil" ? $page : "script") . ".js" ?>></script>-->
+    <script type="module" defer src="<?= $GLOBALS['rootUrl'] . '/public/assets/js/script.js' ?>"></script>
+    <?php if ($page !== "accueil"): ?>
+        <script type="module" defer src="<?= $GLOBALS['rootUrl'] . '/public/assets/js/' . $page . '.js' ?>"></script>
+    <?php endif; ?>
 </head>

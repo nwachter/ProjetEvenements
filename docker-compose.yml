@@ -60,7 +60,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.web
-    image: php:8.2-apache 
+    #image: php:8.2-apache 
     container_name: php-app
     ports: 
       - 8080:80
@@ -85,7 +85,7 @@ services:
       - db-password
       - db-root-password
     volumes:
-      - ./db/db-data:/var/lib/mysql:Z # MySQL stores data here
+      - ./db/db-data:/var/lib/mysql # MySQL stores data here, testerror : add :Z to fix permission issues
       - ./db/mysql-init-scripts:/docker-entrypoint-initdb.d
     env_file: .env.db
     environment:

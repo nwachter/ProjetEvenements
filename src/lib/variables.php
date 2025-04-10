@@ -1,62 +1,69 @@
 <?php
 
 
-$rootPath = $_SERVER['DOCUMENT_ROOT'] . '/ProjetEvenements';
-$rootUrl = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/ProjetEvenements';
-$rootPath = $rootPath . '/ProjetEvenements';
-$GLOBALS['rootPath'] = $_SERVER['DOCUMENT_ROOT'] . '/ProjetEvenements';
-$GLOBALS['rootUrl'] = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/ProjetEvenements';
-$GLOBALS['currentPath'] = $rootPath . $_SERVER['PHP_SELF'];
+// $rootPath = $_SERVER['DOCUMENT_ROOT'] . '/ProjetEvenements';
+// $rootUrl = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/ProjetEvenements';
+// $rootPath = $rootPath . '/ProjetEvenements';
+// $GLOBALS['rootPath'] = $_SERVER['DOCUMENT_ROOT'] . '/ProjetEvenements';
+// $GLOBALS['rootUrl'] = (!empty($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '/ProjetEvenements';
+// $GLOBALS['currentPath'] = $rootPath . $_SERVER['PHP_SELF'];
 
-$GLOBALS['totalPagesEvents'] = 0;
-$GLOBALS['totalPagesActiveEvents'] = 0;
-$GLOBALS['totalPagesInactiveEvents'] = 0;
+// $GLOBALS['totalPagesEvents'] = 0;
+// $GLOBALS['totalPagesActiveEvents'] = 0;
+// $GLOBALS['totalPagesInactiveEvents'] = 0;
 
-$GLOBALS['totalPagesUsers'] = 0;
+// $GLOBALS['totalPagesUsers'] = 0;
 global $message;
 global $error_message;
 
 
+// Compatibility constants - these will use the definitions from bootstrap.php
 if (!defined("SRC")) {
-    define("SRC", $GLOBALS['rootPath'] . "/src");
+    define("SRC", SRC_PATH);
 }
 
 if (!defined("TEMPLATES")) {
-    define("TEMPLATES", SRC . "/templates");
+    define("TEMPLATES", TEMPLATES_PATH);
 }
 
 if (!defined("TEMPLATE_PARTS")) {
-    define("TEMPLATE_PARTS", $GLOBALS['rootPath'] . "/src/templates/template-parts");
+    define("TEMPLATE_PARTS", TEMPLATE_PARTS_PATH);
 }
 
 if (!defined("PAGES")) {
-    define("PAGES", $GLOBALS['rootPath'] . "/src/templates/pages");
+    define("PAGES", PAGES_PATH);
 }
 
 if (!defined("ASSETS")) {
-    define("ASSETS", $GLOBALS['rootPath'] . "/public/assets");
+    define("ASSETS", ASSETS_PATH);
 }
 
 if (!defined("FONCTIONS")) {
-    define("FONCTIONS", $GLOBALS['rootPath'] . "/src/fonctions");
+    define("FONCTIONS", FONCTIONS_PATH);
 }
 
 if (!defined("LIB")) {
-    define("LIB", $GLOBALS['rootPath'] . "/src/lib");
+    define("LIB", LIB_PATH);
 }
 
 if (!defined("CLASSES")) {
-    define("CLASSES", $GLOBALS['rootPath'] . "/src/classes");
+    define("CLASSES", CLASSES_PATH);
 }
 
+// Load routes from config file - fix the path issue
 if (!defined("ROUTES")) {
-    define("ROUTES", include SRC . "/config/routes.php");
+    if (file_exists(CONFIG_PATH . '/routes.php')) {
+        define("ROUTES", include CONFIG_PATH . '/routes.php');
+    } else {
+        die('Required file not found: ' . CONFIG_PATH . '/routes.php');
+    }
 }
 
 if (!defined("CONFIG")) {
-    define("CONFIG", SRC . "/config/config.php");
+    define("CONFIG", CONFIG_PATH . '/config.php');
 }
 
+// These were already defined in bootstrap.php but adding here for completeness
 if (!defined("HOMEPAGE")) {
     define("HOMEPAGE", "home");
 }

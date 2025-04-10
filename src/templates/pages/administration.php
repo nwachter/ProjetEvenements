@@ -1,11 +1,11 @@
 <div id="admin_container" class="old:bg-purple-300 py-10 my-10 px-10  bg-[#05031b] bg-opacity-70 old:bg-opacity-5 mx-4 text-gray-200 rounded-lg shadow-md">
-    <?php if (isset($error_message)): ?>
+    <?php if (isset($error_message) && !empty($error_message)): ?>
         <div class="bg-auburn text-white border border-red-500 p-4 mb-4 rounded">
             <?= $error_message ?>
         </div>
     <?php endif; ?>
 
-    <?php if (isset($message)): ?>
+    <?php if (isset($message) && !empty($message)): ?>
         <div class=" bg-custom-green-700 text-white border border-mint p-4 mb-4 rounded">
             <?= $message ?>
         </div>

@@ -1,33 +1,32 @@
-<header class="rounded-2xl bg-[#05031b]  bg-opacity-80  relative z-[2]  h-full flex flex-col w-full">
-    <div class="header_menu grid grid-cols-6 justify-between items-center py-4 px-8">
+<header class="rounded-2xl px-4 md:px-6 lg:px-8 bg-[#05031b]  bg-opacity-80  relative z-[2]  h-full min-w-full  flex flex-col w-full">
+    <div class="header_menu flex flex-col md:flex-row justify-between items-center gap-6">
         <img id="logo" src="<?= $GLOBALS['rootUrl'] . "/public/assets/images/logo_black.png" ?>" class="object-contain shrink col-span-1 h-20" />
 
-        <nav class="w-full col-span-5 text-white">
-            <ul class="flex items-center justify-end space-x-8 text-lg font-medium">
-                <li><a class="hover:text-[#fdb20b] transition-all" href="<?= $GLOBALS['rootUrl'] . "/accueil" ?>">Accueil</a></li>
-                <li><a class="hover:text-[#fdb20b] transition-all" href="<?= $GLOBALS['rootUrl'] . "/nous_contacter" ?>">Nous contacter</a></li>
+        <nav class="w-full md:w-auto">
+            <ul class="flex items-center justify-center md:justify-end flex-wrap gap-4 md:gap-8 text-base md:text-lg font-medium">
+                <li><a class="text-white hover:text-[#fdb20b] transition-all duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-[#fdb20b] after:transition-all hover:after:w-full" href="<?= $GLOBALS['rootUrl'] . "/accueil" ?>">Accueil</a></li>
+                <li><a class="text-white hover:text-[#fdb20b] transition-all duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-[#fdb20b] after:transition-all hover:after:w-full" href="<?= $GLOBALS['rootUrl'] . "/nous_contacter" ?>">Nous contacter</a></li>
 
                 <li class="relative">
-                    <button id="userMenuButton" class="flex items-center focus:outline-none hover:text-[#fdb20b] transition-all">
+                    <button id="userMenuButton" class="flex items-center focus:outline-none text-white hover:text-[#fdb20b] transition-all duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                             <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6" />
                         </svg>
                     </button>
-                    <ul id="userMenu" class="hidden absolute right-0 mt-2 w-48 bg-[#05031b] text-white border border-[#fdb20b] rounded-lg shadow-lg z-10">
+                    <ul id="userMenu" class="hidden absolute right-0 mt-2 w-48 bg-gradient-to-br from-[#0a0627] via-[#05031b] to-[#1a0838]  text-white border border-[#fdb20b]/50 rounded-lg shadow-lg shadow-[#fdb20b]/10 backdrop-blur-sm z-10">
                         <?php if (!$loggedIn): ?>
-                            <li><a class="block px-4 py-2 hover:bg-[#fdb20b] hover:text-[#05031b] transition-all" href="<?= $GLOBALS['rootUrl'] . "/connexion" ?>">Connexion</a></li>
-                            <li><a class="block px-4 py-2 hover:bg-[#fdb20b] hover:text-[#05031b] transition-all" href="<?= $GLOBALS['rootUrl'] . "/inscription" ?>">Inscription</a></li>
+                            <li><a class="block px-4 py-3 hover:bg-[#fdb20b] hover:text-[#05031b] transition-all duration-300 rounded-t-lg" href="<?= $GLOBALS['rootUrl'] . "/connexion" ?>">Connexion</a></li>
+                            <li><a class="block px-4 py-3 hover:bg-[#fdb20b] hover:text-[#05031b] transition-all duration-300 rounded-b-lg" href="<?= $GLOBALS['rootUrl'] . "/inscription" ?>">Inscription</a></li>
                         <?php endif; ?>
                         <?php if (isset($_SESSION['session_id'])) : ?>
-                            <li><a class="block px-4 py-2 hover:bg-[#fdb20b] hover:text-[#05031b] transition-all" href="<?= $GLOBALS['rootUrl'] . "/profil" ?>">Profil</a></li>
-                            <li><a class="block px-4 py-2 hover:bg-[#fdb20b] hover:text-[#05031b] transition-all" href="<?= $GLOBALS['rootUrl'] . "/index.php?page=" . $page . "&deconnexion=true" ?>">Déconnexion</a></li>
+                            <li><a class="block px-4 py-3 hover:bg-[#fdb20b] hover:text-[#05031b] transition-all duration-300 rounded-t-lg" href="<?= $GLOBALS['rootUrl'] . "/profil" ?>">Profil</a></li>
+                            <li><a class="block px-4 py-3 hover:bg-[#fdb20b] hover:text-[#05031b] transition-all duration-300 rounded-b-lg" href="<?= $GLOBALS['rootUrl'] . "/index.php?page=" . $page . "&deconnexion=true" ?>">Déconnexion</a></li>
                         <?php endif; ?>
-
                     </ul>
                 </li>
 
                 <?php if (isset($_SESSION['session_id']) && in_array('Administrateur', $_SESSION['roles'])) : ?>
-                    <li><a class="hover:text-[#fdb20b] transition-all" href="<?= $GLOBALS['rootUrl'] . "/administration" ?>">Administration</a></li>
+                    <li><a class="text-white hover:text-[#fdb20b] transition-all duration-300 relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-[#fdb20b] after:transition-all hover:after:w-full" href="<?= $GLOBALS['rootUrl'] . "/administration" ?>">Administration</a></li>
                 <?php endif; ?>
             </ul>
         </nav>
@@ -37,7 +36,7 @@
         <div class="text-4xl font-wavefont text-white hover:text-[#fdb20b] transition-all"> -->
     <div class="header_hero flex flex-col items-center justify-center w-full pb-10 pt-10 old:bg-gradient-to-b old:from-[#05031b] old:to-[#0a0919]">
         <!-- <p class=" pr-[40%]  font-[500] text-5xl uppercase text-aero opacity-40 py-6">Bienvenue chez</p> -->
-        <h1 class="text-7xl font-neon-club-music text-center  animate-pulse pb-6 text-white">Nin(j)a Events</h1>
+        <h1 class="text-7xl font-neon-club-music text-center  animate-pulse pb-6 text-white ninja-events">Nin(j)a Events</h1>
         <div class="text-4xl hover:text-[#fdb20b] transition-all duration-300 text-white">
             <span class="letter font-wavefont hover:text-[#fdb20b] transition-all" style="--i:0;">O</span>
             <span class="letter font-wavefont hover:text-[#fdb20b] transition-all" style="--i:1;">p</span>
