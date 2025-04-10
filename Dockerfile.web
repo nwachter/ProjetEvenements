@@ -44,7 +44,7 @@ RUN sed -i 's|DocumentRoot ${APACHE_DOCUMENT_ROOT}|DocumentRoot /var/www/html/Pr
 RUN chown -R www-data:www-data /var/www/html
 
 # Add this to ensure Apache can run even with different permissions
-RUN sed -i 's/www-data/1000/g' /etc/apache2/envvars
+# RUN sed -i 's/www-data/1000/g' /etc/apache2/envvars
 
 
 EXPOSE 80
