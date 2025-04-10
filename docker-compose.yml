@@ -69,7 +69,7 @@ services:
       db:
         condition: service_healthy
     volumes:
-      - .:/var/www/html # Mount PHP code
+      - web-code:/var/www/html/ProjetEvenements # Mount PHP code
       - ./logs:/var/log/apache2  # Optional: Apache logs
 
 
@@ -79,13 +79,13 @@ services:
       dockerfile: Dockerfile.db
     image: mysql:8.0
     restart: always
-    user: "1000:1000"  # Match your host user ID (run `id -u` to check)
+    user: "1000:1000"  #
 
     secrets:
       - db-password
       - db-root-password
     volumes:
-      - ./db/db-data:/var/lib/mysql # MySQL stores data here, testerror : add :Z to fix permission issues
+      - ./db/db-data:/var/lib/mysql:Z # MySQL stores data here, testerror : add :Z to fix permission issues
       - ./db/mysql-init-scripts:/docker-entrypoint-initdb.d
     env_file: .env.db
     environment:
@@ -101,6 +101,7 @@ services:
 
 volumes:
   db-data: 
+  web-code:
 
 secrets:
   db-password:

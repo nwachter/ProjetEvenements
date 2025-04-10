@@ -9,6 +9,8 @@
 db/password.txt
 db/root_password.txt
 
+db/db-data
+
 # ignore ALL files in ANY directory named temp
 temp/
 

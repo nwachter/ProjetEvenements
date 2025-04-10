@@ -1,6 +1,4 @@
 FROM php:8.1-apache
-#FROM php:8.1-apache-bullseye
-
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -14,25 +12,40 @@ RUN apt-get update && apt-get install -y \
     npm \
     && docker-php-ext-install pdo pdo_mysql mbstring exif pcntl bcmath gd zip
 
-# Enable Apache mod_rewrite to later set permissions
+# Enable Apache modules
 RUN a2enmod rewrite
 
+# Set working directory and create project folder
 WORKDIR /var/www/html
+RUN mkdir -p ProjetEvenements
 
-# Copy application foles (with .dockerignore for exclusions, excluding /bin since useless here)
-COPY . .
+# Copy application files (use .dockerignore for exclusions)
+COPY . ./ProjetEvenements/
+
+# Install Composer properly
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Install PHP dependencies
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-RUN if [ -f "composer.json" ]; then composer install --no-interaction --no-dev --optimize-autoloader; fi
+RUN if [ -f "ProjetEvenements/composer.json" ]; then \
+    cd ProjetEvenements && \
+    composer install --no-interaction --no-dev --optimize-autoloader; \
+    fi
 
-# Install and build frontend assets (only if package.json exists)
-RUN if [ -f "package.json" ]; then npm install && npm run build; fi
+# Install and build frontend assets
+RUN if [ -f "ProjetEvenements/package.json" ]; then \
+    cd ProjetEvenements && \
+    npm install; \
+    fi
 
-# Set proper permissions for Apache
-RUN chown -R www-data:www-data /var/www/html \
-    && a2enmod rewrite
+# Configure Apache document root
+ENV APACHE_DOCUMENT_ROOT /var/www/html/ProjetEvenements
+
+# Don't try to set permissions on mounted volumes
+RUN chown -R www-data:www-data /var/www/html
+
+# Add this to ensure Apache can run even with different permissions
+RUN sed -i 's/www-data/1000/g' /etc/apache2/envvars
+
 
 EXPOSE 80
-
 CMD ["apache2-foreground"]
