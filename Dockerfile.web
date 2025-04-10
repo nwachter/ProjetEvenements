@@ -38,9 +38,9 @@ RUN if [ -f "ProjetEvenements/package.json" ]; then \
     fi
 
 # Configure Apache document root
-ENV APACHE_DOCUMENT_ROOT /var/www/html/ProjetEvenements
+# Configure Apache correctly
+RUN sed -i 's|DocumentRoot ${APACHE_DOCUMENT_ROOT}|DocumentRoot /var/www/html/ProjetEvenements\n\t<Directory /var/www/html/ProjetEvenements>\n\t\tOptions Indexes FollowSymLinks\n\t\tAllowOverride All\n\t\tRequire all granted\n\t</Directory>|g' /etc/apache2/sites-available/000-default.conf
 
-# Don't try to set permissions on mounted volumes
 RUN chown -R www-data:www-data /var/www/html
 
 # Add this to ensure Apache can run even with different permissions

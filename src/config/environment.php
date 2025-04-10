@@ -7,13 +7,11 @@ return [
         'db_host' => 'localhost',
         'db_name' => 'projetevenements',
         'db_user' => 'nina',
-        'db_pass' => 'wachter18',
     ],
     'production' => [
-        'base_url' => 'https:/localhost:8080', // Will be set in Docker
+        'base_url' => 'http:/localhost:8080', // Will be set in Docker
         'db_host' => 'db', // Docker service name
         'db_name' => 'projetevenements',
         'db_user' => 'nina',
-        'db_pass' => 'wachter18',
     ],
 ];

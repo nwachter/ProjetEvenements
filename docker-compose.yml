@@ -65,11 +65,14 @@ services:
     ports: 
       - 8080:80
     env_file: .env
+    environment:
+      - APACHE_DOCUMENT_ROOT=/var/www/html/ProjetEvenements
+      - APP_ENV=production
     depends_on:
       db:
         condition: service_healthy
     volumes:
-      - web-code:/var/www/html/ProjetEvenements # Mount PHP code
+      - .:/var/www/html/ProjetEvenements # Mount PHP code
       - ./logs:/var/log/apache2  # Optional: Apache logs
 
 
@@ -82,14 +85,14 @@ services:
     user: "1000:1000"  #
 
     secrets:
-      - db-password
+     # - db-password
       - db-root-password
     volumes:
       - ./db/db-data:/var/lib/mysql:Z # MySQL stores data here, testerror : add :Z to fix permission issues
       - ./db/mysql-init-scripts:/docker-entrypoint-initdb.d
     env_file: .env.db
     environment:
-      - MYSQL_PASSWORD_FILE=/run/secrets/db-password
+     # - MYSQL_PASSWORD_FILE=/run/secrets/db-password
       - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db-password  # Optional (for root access)
     expose:
       - 3306  
@@ -101,10 +104,9 @@ services:
 
 volumes:
   db-data: 
-  web-code:
 
 secrets:
-  db-password:
-    file: ./db/password.txt 
+ # db-password:
+   # file: ./db/password.txt 
   db-root-password:
     file: ./db/root_password.txt
