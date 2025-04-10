@@ -9,52 +9,6 @@
 # https://github.com/docker/awesome-compose
 
 
-# The commented out section below is an example of how to define a PostgreSQL
-# database that your application can use. `depends_on` tells Docker Compose to
-# start the database before your application. The `db-data` volume persists the
-# database data between container restarts. The `db-password` secret is used
-# to set the database password. You must create `db/password.txt` and add
-# a password of your choosing to it before running `docker-compose up`.
-#     depends_on:
-#       db:
-#         condition: service_healthy
-#   db:
-#     image: postgres
-#     restart: always
-#     user: nina
-#     secrets:
-#       - db-password
-#     volumes:
-#       - db-data:/var/lib/postgresql/data
-#     environment:
-#       - POSTGRES_DB=example
-#       - POSTGRES_PASSWORD_FILE=/run/secrets/db-password
-#        - USER_NAME=nwachter
-#          # The Zohomail ids
-#        - MAIL_RECIPIENT=trashkan18@gmail.com
- #       - MAIL_SENDER=ninjaevents@zohomail.eu
-#        - MAIL_APP_PASSWORD=x
-#     expose:
-#       - 5432
-#     healthcheck:
-#       test: [ "CMD", "pg_isready" ]
-#       interval: 10s
-#       timeout: 5s
-#       retries: 5
-# volumes:
-#   db-data:
-# secrets:
-#   db-password:
-#     file: db/password.txt
-
-
-#services:
-#  server:
- #   build:
-#      context: .
- #   ports:
-#      - 9000:80
-
 services:
   web:
     build:
@@ -83,7 +37,6 @@ services:
     image: mysql:8.0
     restart: always
     user: "1000:1000"  #
-
     secrets:
      # - db-password
       - db-root-password
@@ -92,8 +45,8 @@ services:
       - ./db/mysql-init-scripts:/docker-entrypoint-initdb.d
     env_file: .env.db
     environment:
-     # - MYSQL_PASSWORD_FILE=/run/secrets/db-password
-      - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db-password  # Optional (for root access)
+      #- MYSQL_PASSWORD_FILE=/run/secrets/db-password
+      - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db-root-password  
     expose:
       - 3306  
     healthcheck:
@@ -106,7 +59,5 @@ volumes:
   db-data: 
 
 secrets:
- # db-password:
-   # file: ./db/password.txt 
   db-root-password:
     file: ./db/root_password.txt
