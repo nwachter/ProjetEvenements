@@ -14,19 +14,25 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.web
-    #image: php:8.2-apache 
     container_name: php-app
     ports: 
       - 8080:80
     env_file: .env
     environment:
-      - APACHE_DOCUMENT_ROOT=/var/www/html/ProjetEvenements
       - APP_ENV=production
+      - USER_NAME="NinjaEvents"
+      - MAIL_RECIPIENT="trashkan18@gmail.com"
+      - MAIL_SENDER="ninjaevents@zohomail.eu"
+      - MAIL_APP_PASSWORD="Q226neH1b3NJ"
+      - BASE_URL="http://localhost:8080"
+      - APACHE_LOG_DIR=/var/log/apache2
+      - APACHE_DOCUMENT_ROOT=/var/www/html
+
     depends_on:
       db:
         condition: service_healthy
     volumes:
-      - .:/var/www/html/ProjetEvenements # Mount PHP code
+      - .:/var/www/html
       - ./logs:/var/log/apache2  # Optional: Apache logs
 
 
@@ -37,18 +43,23 @@ services:
     image: mysql:8.0
     restart: always
     user: "1000:1000"  #
-    secrets:
+    #secrets:
      # - db-password
-      - db-root-password
+     # - db-root-password
     volumes:
-      - ./db/db-data:/var/lib/mysql:Z # MySQL stores data here, testerror : add :Z to fix permission issues
+      - ./db/db-data:/var/lib/mysql # MySQL stores data here, testerror : add :Z to fix permission issues
       - ./db/mysql-init-scripts:/docker-entrypoint-initdb.d
-    env_file: .env.db
+    #env_file: .env.db
     environment:
       #- MYSQL_PASSWORD_FILE=/run/secrets/db-password
-      - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db-root-password  
-    expose:
-      - 3306  
+      - MYSQL_HOST=db
+      - MYSQL_ROOT_PASSWORD=M0tDeP4sse
+      - MYSQL_DATABASE=projetevenements
+      - MYSQL_USER=nina
+      - MYSQL_PASSWORD=wachter18      
+     # - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db-root-password  
+    ports:
+      - "3306:3306"  
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       interval: 10s
@@ -58,6 +69,6 @@ services:
 volumes:
   db-data: 
 
-secrets:
-  db-root-password:
-    file: ./db/root_password.txt
+#secrets:
+  #db-root-password:
+    #file: ./db/root_password.txt

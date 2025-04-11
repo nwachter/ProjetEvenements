@@ -17,29 +17,27 @@ RUN a2enmod rewrite
 
 # Set working directory and create project folder
 WORKDIR /var/www/html
-RUN mkdir -p ProjetEvenements
+#RUN mkdir -p ProjetEvenements
 
 # Copy application files (use .dockerignore for exclusions)
-COPY . ./ProjetEvenements/
+COPY . .
 
 # Install Composer properly
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
 
 # Install PHP dependencies
-RUN if [ -f "ProjetEvenements/composer.json" ]; then \
-    cd ProjetEvenements && \
+RUN if [ -f "composer.json" ]; then \
     composer install --no-interaction --no-dev --optimize-autoloader; \
     fi
 
 # Install and build frontend assets
-RUN if [ -f "ProjetEvenements/package.json" ]; then \
-    cd ProjetEvenements && \
+RUN if [ -f "package.json" ]; then \
     npm install; \
     fi
 
 # Configure Apache document root
 # Configure Apache correctly
-RUN sed -i 's|DocumentRoot ${APACHE_DOCUMENT_ROOT}|DocumentRoot /var/www/html/ProjetEvenements\n\t<Directory /var/www/html/ProjetEvenements>\n\t\tOptions Indexes FollowSymLinks\n\t\tAllowOverride All\n\t\tRequire all granted\n\t</Directory>|g' /etc/apache2/sites-available/000-default.conf
+RUN sed -i 's|DocumentRoot ${APACHE_DOCUMENT_ROOT}|DocumentRoot /var/www/html\n\t<Directory /var/www/html>\n\t\tOptions Indexes FollowSymLinks\n\t\tAllowOverride All\n\t\tRequire all granted\n\t</Directory>|g' /etc/apache2/sites-available/000-default.conf
 
 RUN chown -R www-data:www-data /var/www/html
 
