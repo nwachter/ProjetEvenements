@@ -1,6 +1,6 @@
 <?php
 try {
-    $environmentVars = require('./config/environment.php');
+    $environmentVars = require(__DIR__.'/environment.php');
 
     if (class_exists('Dotenv\Dotenv')) {
         // Load main .env file
@@ -23,8 +23,8 @@ try {
         $user = $config['db_user'] ?? $_ENV['MYSQL_USER'] ?? 'nina';
 
         // Get the password from file
-        $passFile = __DIR__ . '/../db/password.txt';
-        $pass = file_exists($passFile) ? trim(file_get_contents($passFile)) : '';
+       # $passFile = __DIR__ . '/../../db/password.txt';
+              # $pass = file_exists($passFile) ? trim(file_get_contents($passFile)) : '';
 
         // If password file can't be read, try environment variable
         if (empty($pass) && isset($_ENV['MYSQL_PASSWORD'])) {
@@ -32,10 +32,19 @@ try {
         }
 
         // Get database connection parameters
-        $host = $config['db_host'] ?? 'db';
-        $db_name = $config['db_name'] ?? 'projetevenements';
+//        $host = $config['db_host'] ?? 'db';
 
-        $dsn = "mysql:host=$host;dbname=$db_name;charset=utf8";
+        //        $host = $config['db_host'] ?? 'db';
+      $db_name = $config['db_name'] ?? 'projetevenements';
+
+        $host = 'db';
+        $db_name = 'projetevenements';
+        $port = '3306';
+
+        //        $port = $config['db_port'] ?? '3306';
+
+
+        $dsn = "mysql:host=$host;port=$port;dbname=$db_name;charset=utf8";
 
         $options = [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -45,9 +54,10 @@ try {
 
         global $db;
         $db = new PDO($dsn, $user, $pass, $options);
+
     }
 } catch (Exception $e) {
     die('Database connection failed: ' . $e->getMessage());
 }
 
-require_once SRC . '/config/customConfig.php';
+//require_once SRC . '/config/customConfig.php';

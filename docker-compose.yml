@@ -14,7 +14,8 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.web
-    container_name: php-app
+    container_name: web
+    restart: always
     ports: 
       - 8080:80
     env_file: .env
@@ -27,12 +28,15 @@ services:
       - BASE_URL="http://localhost:8080"
       - APACHE_LOG_DIR=/var/log/apache2
       - APACHE_DOCUMENT_ROOT=/var/www/html
+      - MYSQL_DATABASE=projetevenements
+      - MYSQL_USER=nina
+      - MYSQL_PASSWORD=wachter18
 
     depends_on:
       db:
         condition: service_healthy
     volumes:
-      - .:/var/www/html
+      - .:/var/www/html:Z
       - ./logs:/var/log/apache2  # Optional: Apache logs
 
 
@@ -40,16 +44,17 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.db
+    container_name: db
     image: mysql:8.0
     restart: always
-    user: "1000:1000"  #
+    #user: "1000:1000"   //testerror
     #secrets:
      # - db-password
      # - db-root-password
     volumes:
       - ./db/db-data:/var/lib/mysql # MySQL stores data here, testerror : add :Z to fix permission issues
       - ./db/mysql-init-scripts:/docker-entrypoint-initdb.d
-    #env_file: .env.db
+    env_file: .env
     environment:
       #- MYSQL_PASSWORD_FILE=/run/secrets/db-password
       - MYSQL_HOST=db
@@ -57,9 +62,10 @@ services:
       - MYSQL_DATABASE=projetevenements
       - MYSQL_USER=nina
       - MYSQL_PASSWORD=wachter18      
+      - MYSQL_PORT=3306
      # - MYSQL_ROOT_PASSWORD_FILE=/run/secrets/db-root-password  
     ports:
-      - "3306:3306"  
+      - "3307:3306"  
     healthcheck:
       test: [ "CMD", "mysqladmin", "ping", "-h", "localhost" ]
       interval: 10s

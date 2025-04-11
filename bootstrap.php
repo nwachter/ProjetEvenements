@@ -1,11 +1,10 @@
 <?php
-// bootstrap.php - Place this at the project root
+// bootstrap.php 
 
 // 1. Define the project root path (absolute)
 define('PROJECT_ROOT', __DIR__);
 
 // 2. Determine environment
-// In production with Docker, set this environment variable in your Dockerfile/docker-compose
 $env = getenv('APP_ENV') ?: 'development';
 
 // 3. Set up path constants
@@ -61,10 +60,7 @@ if ($env === 'development') {
     ini_set('display_errors', 0);
 }
 
-// Load composer autoloader if it exists
-if (file_exists(PROJECT_ROOT . '/vendor/autoload.php')) {
-    require_once PROJECT_ROOT . '/vendor/autoload.php';
-}
+
 
 // Define global login status
 $GLOBALS['loggedIn'] = (isset($_SESSION['email']) && isset($_SESSION['roles']) && isset($_SESSION['idUtilisateur']) && isset($_SESSION['session_id'])) ? true : false;

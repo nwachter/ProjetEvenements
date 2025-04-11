@@ -1,4 +1,4 @@
-FROM php:8.1-apache
+FROM php:apache
 
 # Install system dependencies
 RUN apt-get update && apt-get install -y \
@@ -40,10 +40,10 @@ RUN if [ -f "package.json" ]; then \
 RUN sed -i 's|DocumentRoot ${APACHE_DOCUMENT_ROOT}|DocumentRoot /var/www/html\n\t<Directory /var/www/html>\n\t\tOptions Indexes FollowSymLinks\n\t\tAllowOverride All\n\t\tRequire all granted\n\t</Directory>|g' /etc/apache2/sites-available/000-default.conf
 
 RUN chown -R www-data:www-data /var/www/html
+USER www-data
 
 # Add this to ensure Apache can run even with different permissions
-# RUN sed -i 's/www-data/1000/g' /etc/apache2/envvars
-
+# RUN sed -i 's/www-data/1000/g' /etc/apache2/envvars   ~   
 
 EXPOSE 80
 CMD ["apache2-foreground"]
