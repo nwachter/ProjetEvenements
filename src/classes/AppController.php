@@ -130,7 +130,7 @@
 
             if ((bool)$disconnect) {
                 disconnect();
-                header("Location: " . $GLOBALS['rootUrl'] . "/index.php?page=" . "inscription");
+                header("Location: " . $GLOBALS['rootUrl'] . "/index.php?page=" . "accueil");
             }
 
             if (isset($_POST['submit_connexion']) && !$loggedIn) {
@@ -154,6 +154,7 @@
                         }
                     } else {
                         echo "Inputs invalides";
+                        $error_message = "Les informations saisies sont invalides.";
                     }
                 }
 

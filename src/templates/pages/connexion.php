@@ -1,7 +1,7 @@
 <?php var_dump($loggedIn) ?>
 
 <div class="h-full flex flex-col items-center opacity-80 w-full container_accueil relative z-10">
-    <div class="w-1/3 grid grid-cols-1 p-4 justify-center gap-4 items-center">
+    <div class="max-sm:w-1/2 w-1/3 grid grid-cols-1 pt-6 my-6 pb-4 px-12 justify-center gap-4 items-center backdrop-blur-md border-[1px] border-white/20 bg-white/10 rounded-2xl p-6 shadow-lg">
         <div class=" h-full  w-full py-4">
             <h1 class="text-indigo-500  justify-self-center text-3xl font-extrabold" style="font-family: 'Neon Club Music','Corben','Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;padding-bottom: 0.8rem;">Connexion</h1>
 
@@ -39,23 +39,23 @@
             <div>
                 <!-- Si clic sur Inscrivez-vous, envoie vers inscription.php -->
                 <p class="message-neutral" style="font-family: 'Rimouski Sb Regular','Corben','Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color:lightsteelblue; font-weight:300;">Pas inscrit ? <a href="<?= $GLOBALS['rootUrl'] . "/index.php?page=inscription" ?>" class="text-yellow underline">Inscrivez-vous</a>.</p>
-                <form action="<?= $GLOBALS['rootUrl'] . "/index.php?page=connexion " ?>" method="post" class="signin_form pt-3">
+                <form action="<?= $GLOBALS['rootUrl'] . "/index.php?page=connexion " ?>" method="post" class="signin_form pt-3" autocomplete="off">
 
                     <div class="text-white">
                         <label for="email">Email</label>
                         <div class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-12 rounded-[15px] p-px">
-                            <input type="text" name="email" id="email" class="w-full h-full outline-none bg-black p-2 rounded-[15px]">
+                            <input type="text" name="email" id="email" class="text-[14px] px-4 w-full h-full outline-none bg-[#09061e] p-2 rounded-[15px]">
                         </div>
                     </div>
                     <div class="text-white">
                         <label for="motDePasse">Mot de passe</label>
                         <div class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 h-12 rounded-[15px] p-px">
-                            <input id="motDePasse" type="password" name="motDePasse" class="w-full h-full outline-none bg-black p-2 rounded-[15px]">
+                            <input id="motDePasse" type="password" name="motDePasse" class="text-[14px] px-4 w-full h-full outline-none bg-[#09061e] p-2 rounded-[15px]">
                         </div>
                     </div>
 
                     <div class="w-1/3 pt-4 mx-auto">
-                        <button type="submit" class="w-[20rem] h-12 bg-indigo-800 text-white font-semibold hover:filter hover:brigthness-125 active:filter active:brightness-90 transition-all" name="submit_connexion" id="submit_connexion">Connexion</button>
+                        <button type="submit" class="rounded px-4 h-12 bg-indigo-800 text-white font-semibold hover:filter hover:brigthness-125 active:filter active:brightness-90 transition-all" name="submit_connexion" id="submit_connexion">Connexion</button>
                     </div>
 
                 </form>

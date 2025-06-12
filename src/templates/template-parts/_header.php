@@ -20,7 +20,7 @@
                         <?php endif; ?>
                         <?php if (isset($_SESSION['session_id'])) : ?>
                             <li><a class="block px-4 py-3 hover:bg-[#fdb20b] hover:text-[#05031b] transition-all duration-300 rounded-t-lg" href="<?= $GLOBALS['rootUrl'] . "/profil" ?>">Profil</a></li>
-                            <li><a class="block px-4 py-3 hover:bg-[#fdb20b] hover:text-[#05031b] transition-all duration-300 rounded-b-lg" href="<?= $GLOBALS['rootUrl'] . "/index.php?page=" . $page . "&deconnexion=true" ?>">Déconnexion</a></li>
+                            <li><a class="block px-4 py-3 hover:bg-[#fdb20b] hover:text-[#05031b] transition-all duration-300 rounded-b-lg" href="<?= $GLOBALS['rootUrl'] . "/index.php?page=" . "accueil" . "&deconnexion=true" ?>">Déconnexion</a></li>
                         <?php endif; ?>
                     </ul>
                 </li>
