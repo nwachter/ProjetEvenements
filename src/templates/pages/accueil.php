@@ -15,7 +15,7 @@
 
         <!-- Search Form with Blue Background -->
         <div class="w-full mt-6 mb-12">
-            <div class="bg-[#0a0627]/80 backdrop-blur-md rounded-xl p-6 shadow-xl shadow-[#fdb20b]/5">
+            <div class=" bg-[#05031b] backdrop-blur-md rounded-xl p-6 shadow-md shadow-[#fdb20b]/5">
                 <h2 class="text-2xl font-bold text-white mb-6 flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-2 text-[#fdb20b]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -110,7 +110,6 @@
             </div>
         </div>
 
-        <!-- Page Header -->
         <div class="flex flex-col md:flex-row justify-between items-center mb-10 px-4">
             <h1 class="pl-0 md:pl-10 text-4xl md:text-5xl font-bold font-cabin text-melon-100 mb-6 md:mb-0 relative">
                 Tous les Événements
@@ -128,19 +127,16 @@
             <?php endif; ?>
         </div>
 
-        <!-- Events Grid -->
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 px-4 w-full mb-10">
+        <!-- Events  -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 sm:gap-4 gap-3 px-4 w-full mb-10">
             <?php foreach ($events as $event) : ?>
-                <article class="bg-gray-800 bg-opacity-70 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:translate-y-[-3px] group">
+                <article class="bg-[#05031b] bg-opacity-70 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 hover:translate-y-[-3px] group">
                     <div class="relative h-64 overflow-hidden">
-                        <!-- Event image with overlay -->
                         <img src="<?= $GLOBALS['rootUrl'] . $event['image']; ?>" alt="<?= htmlspecialchars($event['titre']); ?>"
                             class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
 
-                        <!-- Gradient overlay -->
                         <div class="absolute inset-0 bg-gradient-to-t from-[#05031b] to-transparent opacity-70"></div>
 
-                        <!-- Event date badge -->
                         <div class="absolute top-4 right-4 bg-[#fdb20b] text-[#05031b] px-3 py-1 rounded-full font-medium text-sm flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -148,7 +144,6 @@
                             <?= date('d M Y', strtotime($event['dateEvenement'])); ?>
                         </div>
 
-                        <!-- Capacity badge -->
                         <div class="absolute bottom-4 right-4 bg-[#05031b]/80 text-white px-3 py-1 rounded-full text-sm flex items-center backdrop-blur-sm border border-white/10">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-[#fdb20b]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -158,21 +153,18 @@
                     </div>
 
                     <div class="p-6">
-                        <!-- Event title with chromatic effect -->
-                        <h2 class="text-2xl w-fit relative font-bold mb-3">
-                            <a class="font-bentham text-selective-yellow hover:filter hover:brightness-110 font-[300] active:filter active:brightness-90 transition-all [text-shadow:_1px_0_0_#DB324D,_-1px_0_0_#5BC0EB]" href="<?= $GLOBALS['rootUrl'] ?>?page=evenement&idEvenement=<?= $event['idEvenement'] ?>">
+                        <h2 class="text-[1.45rem] w-fit sm:min-h-[4rem] leading-tight relative font-bold mb-3">
+                            <a class="font-bentham text-selective-yellow hover:filter  hover:brightness-110 font-[300] active:filter active:brightness-90 transition-all [text-shadow:_1px_0_0_#DB324D,_-1px_0_0_#5BC0EB]" href="<?= $GLOBALS['rootUrl'] ?>?page=evenement&idEvenement=<?= $event['idEvenement'] ?>">
                                 <?= htmlspecialchars($event['titre']); ?>
                             </a>
                             <span class="title-underline absolute top-[1.5rem] left-0 h-[2px] bg-selective-yellow w-[40%] [box-shadow:_2px_1px_0_#DB324D,_-1px_-2px_0_#5BC0EB]"></span>
                         </h2>
 
-                        <!-- Description with truncation -->
-                        <div class="text-base text-melon-50 leading-normal font-cabin opacity-90 text-[15px] mb-4 line-clamp-3">
+                        <div class="text-base text-melon-50 leading-normal font-cabin opacity-90 text-[14px] mb-4 line-clamp-3">
                             <?= htmlspecialchars($event['description']); ?>
                         </div>
 
                         <div class="grid grid-cols-2 gap-3 mb-6">
-                            <!-- Organizer -->
                             <div class="flex items-center text-base font-cabin text-[14px] opacity-80">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-selective-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
@@ -180,7 +172,6 @@
                                 <span class="font-cabin text-melon-50"><?= htmlspecialchars($event['designationOrganisateur'] ?? 'Autre'); ?></span>
                             </div>
 
-                            <!-- Location -->
                             <div class="flex items-center text-base text-[14px] font-cabin opacity-80">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1 text-selective-yellow" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
@@ -190,7 +181,6 @@
                             </div>
                         </div>
 
-                        <!-- Action buttons -->
                         <div class="mt-auto">
                             <?php if (isset($_SESSION['session_id'])) { ?>
                                 <?php if (($_SESSION['roles'] === 'Utilisateur' || in_array('Utilisateur', $_SESSION['roles'])) && !isset($event['idUtilisateur'])) { ?>
@@ -222,7 +212,6 @@
             <?php endforeach; ?>
         </div>
 
-        <!-- Pagination -->
         <?php if ($totalPagesEvents > 1): ?>
             <div class="w-full pt-6">
                 <div class="flex w-[50%] mx-auto h-8 rounded justify-center gap-2 items-center">

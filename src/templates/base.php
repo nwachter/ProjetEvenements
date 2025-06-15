@@ -5,8 +5,8 @@
 
 <body class="relative m-0 p-0 w-full min-h-screen bg-[#05031b] z-0 font-roboto">
     <div class="absolute inset-0 w-full h-full z-0">
-        <div class="absolute inset-0 bg-[#05031b]/70 backdrop-blur-sm z-1"></div>
-        <video loop muted autoplay id="plasma_waves" class="w-screen h-screen fixed object-cover opacity-30">
+        <div class="absolute inset-0 bg-[#05031b]/90 backdrop-blur-sm z-1"></div>
+        <video loop muted autoplay id="plasma_waves" class="w-screen h-screen fixed object-cover opacity-[17%] ">
             <source src="<?= $GLOBALS['rootUrl'] ?>/public/assets/videos/plasma_waves.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
@@ -15,7 +15,7 @@
     <div class="relative z-10 flex flex-col min-h-screen old:max-w-[1440px] w-full ">
         <?php include TEMPLATE_PARTS . '/_header.php'; ?>
 
-        <main class="flex-grow w-full">
+        <main class="flex-grow px-2 w-full">
             <?php include $pagePath; ?>
         </main>
 

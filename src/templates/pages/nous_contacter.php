@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 }
 ?>
 
-<div class="text-white min-h-screen flex flex-col">
+<div class="text-white py-12 flex flex-col">
     <div class="container mx-auto px-4 flex-grow">
 
         <div class="py-12">
@@ -23,14 +23,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                                 <label for="name" class="sr-only"></label>
                                 <input type="text" name="name" id="name" placeholder="Votre nom" required
 
-                                    class="rounded-xl px-2 w-full bg-[#05021a] border-b border-gray-700 py-2 focus:outline-none focus:border-yellow-400 transition">
+                                    class="rounded-xl px-4 w-full bg-[#05021a] border-b border-gray-700 py-2 focus:outline-none focus:border-yellow-400 transition">
                             </div>
 
                             <div class="rounded-xl bg-gradient-to-r from-indigo-500 to-pink-500 p-px">
                                 <label for="email" class="sr-only"></label>
                                 <input type="email" name="email" id="email" placeholder="Votre email" required
-
-                                    class="rounded-xl px-2 w-full bg-[#05021a] border-b border-gray-700 py-2 focus:outline-none focus:border-yellow-400 transition">
+                                    class="rounded-xl px-4 w-full bg-[#05021a] border-b border-gray-700 py-2 focus:outline-none focus:border-yellow-400 transition">
                             </div>
                         <?php endif; ?>
 
@@ -38,16 +37,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             <label for="sujet" class="sr-only"></label>
                             <input type="sujet" name="sujet" id="sujet" placeholder="Le sujet du message" required
 
-                                class="rounded-xl px-2 w-full bg-[#05021a] border-b border-gray-700 py-2 focus:outline-none focus:border-yellow-400 transition">
+                                class="rounded-xl px-4 w-full bg-[#05021a] border-b border-gray-700 py-2 focus:outline-none focus:border-yellow-400 transition">
                         </div>
 
                         <div class="rounded-xl bg-gradient-to-r from-indigo-500 to-pink-500 p-px">
                             <label for="message" class="sr-only"></label>
                             <textarea name="message" id="message" placeholder="Ecrivez votre message ici" rows="4" required
 
-                                class="rounded-xl px-2 w-full bg-[#05021a] border-b border-gray-700 py-2 focus:outline-none focus:border-yellow-400 transition"></textarea>
+                                class="rounded-xl px-4 w-full bg-[#05021a] border-b border-gray-700 py-2 focus:outline-none focus:border-yellow-400 transition"></textarea>
                         </div>
-                        <button type="submit" name="submit_contact" class="rounded-lg px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold rounded hover:opacity-90 transition">
+                        <button type="submit" name="submit_contact" class="rounded-lg px-6 py-2 bg-gradient-to-r from-blue-500 to-purple-500 text-white font-semibold shadow-md hover:opacity-90 transition">
                             Envoyer
                         </button>
 

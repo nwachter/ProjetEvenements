@@ -1,16 +1,15 @@
 <div class="w-full max-w-3xl mx-auto py-12">
-    <!-- Page header with glow effect -->
+
     <div class="text-center mb-10">
-        <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 relative inline-block">
+        <h1 class="text-4xl md:text-5xl font-cabin font-bold text-white/90 mb-4 relative inline-block">
             Organiser un évènement
-            <div class="absolute -inset-1 blur-xl bg-[#fdb20b]/10 rounded-full -z-10"></div>
+
         </h1>
         <p class="text-gray-300 max-w-2xl mx-auto">
             Ici, vous pouvez organiser un évènement. Si vous avez besoin de plus d'informations sur le fonctionnement du site, veuillez nous contacter via la page Contact.
         </p>
     </div>
 
-    <!-- Error/Info messages -->
     <div class="mb-6">
         <?php if (isset($message)): ?>
             <div class="bg-[#ff4d6d]/20 border border-[#ff4d6d]/30 text-[#ff4d6d] rounded-lg p-4 backdrop-blur-sm">

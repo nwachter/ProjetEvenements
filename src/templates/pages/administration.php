@@ -1,211 +1,321 @@
-<div id="admin_container" class="old:bg-purple-300 py-10 my-10 px-10  bg-[#05031b] bg-opacity-70 old:bg-opacity-5 mx-4 text-gray-200 rounded-lg shadow-md">
-    <?php if (isset($error_message) && !empty($error_message)): ?>
-        <div class="bg-auburn text-white border border-red-500 p-4 mb-4 rounded">
-            <?= $error_message ?>
-        </div>
-    <?php endif; ?>
+    <div id="admin_container" class="min-h-screen max-w-7xl min-w-0 mt-12  max-md:w-full sm:mx-auto bg-gradient-to-r from-[#050321]/90 via-[#05031b]/90 to-[#05031b]/70 border-[1px] backdrop-blur-md border-white/10 rounded-xl py-3 px-4 sm:px-8 sm:pt-10 pt-6">
+        <div class="max-w-7xl mx-auto">
 
-    <?php if (isset($message) && !empty($message)): ?>
-        <div class=" bg-custom-green-700 text-white border border-mint p-4 mb-4 rounded">
-            <?= $message ?>
-        </div>
-    <?php endif; ?>
-
-
-    <div class="administration_zone">
-        <h1 class="text-5xl font-bold opacity-90  text-selective-yellow mb-4 border-b font-bentham  border-gray-700 pb-2">Zone d'Administration</h1>
-        <div class="mb-8">
-            <h1 class="text-3xl font-bold mb-6 text-melon-50 border-b border-melon pb-2"><a id="utilisateurs">Utilisateurs</a></h1>
-            <div class="grid grid-cols-1 gap-3">
-                <?php foreach ($users as $user): ?>
-                    <div class=" bg-white bg-opacity-10 rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-indigo-500/30 hover:bg-gray-750 transition-all">
-                        <div class="px-3 py-2 flex justify-between items-center">
-                            <div class="flex-grow">
-                                <h3 class="text-[15px] font-semibold text-indigo-200">
-                                    <?= $user['prenom'] . ' ' . $user['nom'] ?>
-                                    <span class="text-[14px] font-normal text-gray-400 ml-1">#<?= $user['idUtilisateur'] ?></span>
-                                </h3>
-                                <p class="text-[14px] text-gray-400 mt-0.5">
-                                    Roles : <?= implode(', ', $user['roles']) ?>
-                                </p>
-                            </div>
-                            <button class="text-indigo-300 hover:text-indigo-100 transition-colors duration-200" onclick="toggleForm(<?= $user['idUtilisateur'] ?>)">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                </svg>
-                            </button>
-                        </div>
-                        <div id="form_<?= $user['idUtilisateur'] ?>" class="hidden p-3 bg-gray-750 border-t border-gray-700 transition-all">
-                            <form action="index.php?page=administration&idUtilisateur=<?= $user['idUtilisateur'] ?>" method="POST" class="space-y-2 transition-all">
-                                <div>
-                                    <label for="roles_<?= $user['idUtilisateur'] ?>" class="block text-xs font-medium text-indigo-300 mb-1">Changer de rôle</label>
-                                    <select name="roles[]" id="roles_<?= $user['idUtilisateur'] ?>" class="w-full p-1 text-xs bg-gray-700 text-gray-200 border border-gray-600 rounded focus:outline-none focus:ring-1 focus:ring-indigo-500" multiple>
-                                        <?php foreach ($roles as $role): ?>
-                                            <?php $isSelected = in_array($role, $user['roles'], true); ?>
-                                            <option value="<?= htmlspecialchars($role); ?>" class="<?= $isSelected ? 'bg-indigo-600 text-white' : ''; ?>" <?= $isSelected ? 'selected' : ''; ?>>
-                                                <?= htmlspecialchars($role); ?>
-                                            </option>
-                                        <?php endforeach; ?>
-                                    </select>
-                                </div>
-                                <div class="flex space-x-2">
-                                    <button type="submit" name="updateRoles" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white py-1 px-2 rounded text-xs transition-colors duration-200">
-                                        Changer
-                                    </button>
-                                    <button type="submit" name="deleteUser" class="flex-1 bg-red-600 hover:bg-red-700 text-white py-1 px-2 rounded text-xs transition-colors duration-200">
-                                        Supprimer
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                <?php endforeach; ?>
-            </div>
-            <div class="w-full pt-6">
-                <div class="flex w-[50%] mx-auto h-8 rounded justify-center gap-2 items-center">
-                    <?php foreach (range(0, $totalPagesUsers - 1) as $page) {
-                    ?>
-
-                        <a href="<?= $GLOBALS['rootUrl'] . '/index.php?page=administration&nb=' . ($page + 1)  . '#utilisateurs' ?>" class="<?= (int)$nb === (int)$page + 1 ? "bg-selective-yellow/10 hover:border-selective-yellow text-selective-yellow" : "bg-slate-100/10 text-slate-100 hover:border-slate-100" ?> hover:border-x-[1px] cursor-pointer flex items-center rounded  justify-center text-[13px] font-semibold hover:filter hover:brightness-125 hover:bg-opacity-[15%] active:filter active:brightness-90 transition-all w-8 h-8 "><?= $page + 1 ?></a>
-                    <?php } ?>
+            <!-- Error and Success Messages -->
+            <?php if (isset($error_message) && !empty($error_message)): ?>
+                <div class="bg-red-600/20 border border-red-500/50 text-red-300 p-4 mb-4 rounded-lg">
+                    <?= $error_message ?>
                 </div>
-            </div>
-        </div>
+            <?php endif; ?>
 
-        <script>
-            function toggleForm(userId) {
-                const form = document.getElementById(`form_${userId}`);
-                form.classList.toggle('hidden');
-            }
-        </script>
+            <?php if (isset($message) && !empty($message)): ?>
+                <div class="bg-green-600/20 border border-green-500/50 text-green-300 p-4 mb-4 rounded-lg">
+                    <?= $message ?>
+                </div>
+            <?php endif; ?>
 
-        <div class="w-full">
-            <?php if ($activeEvents != null || $inactiveEvents != null): ?><h1 class="text-3xl font-bold mb-4  text-melon-50 border-b border-melon">Evenements
+            <!-- Header Section -->
+            <div class="mb-6 sm:mb-8">
+                <h1 class="text-2xl font-cabin sm:text-4xl md:text-5xl font-bold text-white mb-2 tracking-tight">
+                    Administration
                 </h1>
-            <?php endif; ?>
-            <?php if ($inactiveEvents != null): ?>
-                <div class="w-full">
-                    <h2 class="text-xl font-bold mb-4 mt-8 text-indigo-300 border-b border-indigo-700"><a id="evenements_inactifs">Evenements en cours de vérification</a>
-                    </h2>
-                    <table class="w-full table-auto text-left border-separate border-spacing-y-2 mb-6  border-spacing-x-1 shadow-md">
-                        <thead class="bg-gray-700 text-gray-300 tracking-wider">
-                            <tr>
-                                <th class="p-2 capitalize rounded-tl-lg w-1/12">Ref</th>
-                                <th class="p-2 capitalize w-2/12">Titre</th>
-                                <th class="p-2 capitalize w-1/12">Lieu</th>
-                                <th class="p-2 capitalize w-1/12">Date</th>
-                                <th class="p-2 capitalize w-3/12">Informations</th>
-                                <th class="p-2 capitalize w-2/12">Auteur</th>
-                                <th class="p-2 capitalize rounded-tr-lg w-2/12">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-gray-800 hover:filter hover:brightness-125 active:filter active:brightness-90 transition-all">
-                            <?php foreach ($inactiveEvents as $inactiveEvent): ?>
-                                <tr class="text-sm text-slate-300">
-                                    <td class="p-2 rounded-l-lg"><?= $inactiveEvent['idEvenement'] ?></td>
-                                    <td class="p-2"><?= $inactiveEvent['titre'] ?></td>
-                                    <td class="p-2"><?= $inactiveEvent['nomLieu'] ?></td>
-                                    <td class="p-2"><?= $inactiveEvent['dateEvenement'] ?></td>
-                                    <td class="p-2 w-3/12">
-                                        <div class="line-clamp-2 overflow-hidden text-ellipsis">
-                                            <?= $inactiveEvent['description'] ?>
-                                        </div>
-                                    </td>
-                                    <td class="p-2"><i><?= $inactiveEvent['designationOrganisateur'] ?></i></td>
-                                    <td class="p-2 rounded-r-lg">
-                                        <div class="flex space-x-2">
-                                            <form action="<?= $GLOBALS['rootUrl'] . "/index.php?page=administration" ?>" method="POST">
-                                                <input type="hidden" name="idEvenement" value="<?= htmlspecialchars($inactiveEvent['idEvenement']); ?>">
-                                                <button type="submit" name="validateEvent" value="validate" class="bg-green-600 hover:bg-green-700 text-white py-1 px-3 rounded cursor-pointer">
-                                                    Valider
-                                                </button>
-                                            </form>
-                                            <form action="<?= $GLOBALS['rootUrl'] . "/index.php?page=administration" ?>" method="POST">
-                                                <input type="hidden" name="idEvenement" value="<?= htmlspecialchars($inactiveEvent['idEvenement']); ?>">
-                                                <button type="submit" name="deleteEvent" value="delete" class="bg-red-600 hover:bg-red-700 text-white py-1 px-3 rounded cursor-pointer">
-                                                    Supprimer
-                                                </button>
-                                            </form>
+                <p class="text-slate-400 text-base sm:text-lg">Gérez les utilisateurs et événements de l'application</p>
+            </div>
 
-                                        </div>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                    <div class="w-full pt-6">
-                        <div class="flex w-[50%] mx-auto h-8 rounded justify-center gap-2 items-center">
-                            <?php foreach (range(0, $totalPagesInactiveEvents - 1) as $page) {
-                            ?>
-
-                                <a href="<?= $GLOBALS['rootUrl'] . '/index.php?page=administration&nb_ina=' . ($page + 1)  . '#evenements_inactifs' ?>" class="<?= (int)$nb_ina === (int)$page + 1 ? "bg-selective-yellow/10 hover:border-selective-yellow text-selective-yellow" : "bg-slate-100/10 text-slate-100 hover:border-slate-100" ?> hover:border-x-[1px] cursor-pointer flex items-center rounded  justify-center text-[13px] font-semibold hover:filter hover:brightness-125 hover:bg-opacity-[15%] active:filter active:brightness-90 transition-all w-8 h-8 "><?= $page + 1 ?></a>
-                            <?php } ?>
-                        </div>
+            <div class="mb-12">
+                <div class="flex items-center justify-between mb-6">
+                    <div>
+                        <h2 class="sm:text-2xl text-xl font-cabin font-bold text-white mb-1" id="utilisateurs">Utilisateurs</h2>
+                        <p class="text-slate-400 text-sm">Gérez les rôles et permissions des utilisateurs</p>
                     </div>
-
+                    <div class="bg-purple-500/20 text-purple-300 font-cabin px-4 py-2 rounded-lg text-sm font-medium">
+                        <?= count($users) ?> utilisateurs
+                    </div>
                 </div>
-            <?php endif; ?>
 
-            <?php if ($activeEvents != null): ?>
-                <div class="w-full">
+                <div class="grid gap-2">
+                    <?php foreach ($users as $user): ?>
+                        <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl overflow-hidden hover:bg-white/10 transition-all duration-300 group">
+                            <div class="px-3 pt-2">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-3 mb-2">
+                                            <div class="w-8 h-8 bg-gradient-to-br  text-[11px] from-purple-500 to-pink-500 rounded-full flex items-center justify-center text-white font-bold">
+                                                <p><?= strtoupper(substr($user['prenom'], 0, 1) . substr($user['nom'], 0, 1)) ?></p>
 
-                    <h2 class="text-xl font-bold mb-4  text-indigo-300 border-b border-indigo-700"><a id="evenements_actifs">Evenements actifs</a>
-                    </h2>
-                    <table class="w-full table-auto text-left border-separate border-spacing-y-2 border-spacing-x-1 shadow-md">
-                        <thead class="bg-gray-700 text-gray-300 tracking-wider">
-                            <tr>
-                                <th class="p-2 capitalize rounded-tl-lg w-1/12">Ref</th>
-                                <th class="p-2 capitalize w-2/12">Titre</th>
-                                <th class="p-2 capitalize w-1/12">Lieu</th>
-                                <th class="p-2 capitalize w-1/12">Date</th>
-                                <th class="p-2 capitalize w-3/12">Informations</th>
-                                <th class="p-2 capitalize w-2/12">Auteur</th>
-                                <th class="p-2 capitalize rounded-tr-lg w-2/12">Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody class="bg-gray-800 hover:filter hover:brightness-125 active:filter active:brightness-90 transition-all">
-                            <?php foreach ($activeEvents as $index => $activeEvent): ?>
-                                <tr class="text-sm text-slate-300">
-                                    <td class="p-2 rounded-l-lg"><?= $activeEvent['idEvenement'] ?></td>
-                                    <td class="p-2"><?= $activeEvent['titre'] ?></td>
-                                    <td class="p-2"><?= $activeEvent['nomLieu'] ?></td>
-                                    <td class="p-2"><?= $activeEvent['dateEvenement'] ?></td>
-                                    <td class="p-2 w-3/12">
-                                        <div class="line-clamp-2 overflow-hidden text-ellipsis">
-                                            <?= $activeEvent['description'] ?>
+                                            </div>
+                                            <div class="w-full">
+                                                <div class="flex w-full justify-between items-center">
+                                                    <h3 class="text-[12px] font-semibold text-white">
+                                                        <?= $user['prenom'] . ' ' . $user['nom'] ?>
+                                                    </h3>
+                                                    <div class="flex flex-wrap gap-2">
+                                                        <?php foreach ($user['roles'] as $role): ?>
+                                                            <span class="bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-[10px] font-medium">
+                                                                <?= $role ?>
+                                                            </span>
+                                                        <?php endforeach; ?>
+                                                    </div>
+                                                </div>
+
+                                                <div class="text-slate-400  w-full  text-[11px]">
+                                                    <p> ID: #<?= $user['idUtilisateur'] ?></P>
+
+                                                </div>
+                                            </div>
                                         </div>
-                                    </td>
-                                    <td class="p-2"><i><?= $activeEvent['designationOrganisateur'] ?></i></td>
-                                    <td class="p-2 rounded-r-lg">
-                                        <div class="flex space-x-2">
-                                            <form action="administration.php" method="POST">
-                                                <input type="hidden" name="idEvenement" value="<?= $activeEvent['idEvenement'] ?>">
-                                                <input type="submit" name="deleteEvent" value="Supprimer" class="bg-red-600 hover:bg-red-700 text-white py-1 px-3 rounded cursor-pointer">
-                                            </form>
 
+                                    </div>
+                                    <button class="text-slate-400 hover:text-white transition-colors px-2 py-1 rounded-lg hover:bg-white/10" onclick="toggleForm(<?= $user['idUtilisateur'] ?>)">
+                                        <svg class="w-5 h-5 transform transition-transform duration-200" id="icon_<?= $user['idUtilisateur'] ?>" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div id="form_<?= $user['idUtilisateur'] ?>" class="hidden border-t border-white/10 bg-black/20">
+                                <div class="px-4 py-3">
+                                    <form action="index.php?page=administration&idUtilisateur=<?= $user['idUtilisateur'] ?>" method="POST" class="space-y-4">
+                                        <div>
+                                            <div class="flex justify-between w-full mb-2 items-center">
+                                                <label for="roles_<?= $user['idUtilisateur'] ?>" class="block text-sm font-medium text-slate-300 mb-2">
+                                                    Modifier les rôles
+                                                </label>
+                                                <div class="flex space-x-3">
+                                                    <button type="submit" name="updateRoles" title="Mettre à jour les rôles"
+                                                        class=" bg-purple-600 hover:bg-purple-700 text-white py-1.5 px-3 text-[12px] rounded-lg font-medium transition-colors duration-200 flex items-center justify-center space-x-2">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                                        </svg>
+
+                                                    </button>
+                                                    <button type="submit" name="deleteUser" title="Supprimer l'utilisateur"
+                                                        class=" bg-red-600 hover:bg-red-700 text-white py-1.5 px-3 rounded-lg text-[12px] font-medium transition-colors duration-200 flex items-center justify-center space-x-2">
+                                                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                                        </svg>
+
+                                                    </button>
+                                                </div>
+                                            </div>
+
+                                            <select name="roles[]" id="roles_<?= $user['idUtilisateur'] ?>"
+                                                class="w-full p-3 bg-white/5 border border-white/20 max-h-[3.3rem] rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent" multiple>
+                                                <?php foreach ($roles as $role): ?>
+                                                    <?php $isSelected = in_array($role, $user['roles'], true); ?>
+                                                    <option value="<?= htmlspecialchars($role); ?>"
+                                                        class="<?= $isSelected ? 'bg-white/20 font-semibold hover:bg-white/10' : 'text-slate-200/30 hover:bg-white/10 font-medium  '; ?> transition-all px-3 py-0.5 text-[13px]"
+                                                        <?= $isSelected ? 'selected' : ''; ?>>
+                                                        <?= htmlspecialchars($role); ?>
+                                                    </option>
+                                                <?php endforeach; ?>
+                                            </select>
                                         </div>
-                                    </td>
-                                </tr>
-                            <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                    <div class="w-full pt-6">
-                        <div class="flex w-[50%] mx-auto h-8 rounded justify-center gap-2 items-center">
-                            <?php foreach (range(0, $totalPagesActiveEvents - 1) as $page) {
-                            ?>
 
-                                <a href="<?= $GLOBALS['rootUrl'] . '/index.php?page=administration&nb_act=' . ($page + 1) . '#evenements_actifs' ?>" class="<?= (int)$nb_act === (int)$page + 1 ? "bg-selective-yellow/10 hover:border-selective-yellow text-selective-yellow" : "bg-slate-100/10 text-slate-100 hover:border-slate-100" ?> hover:border-x-[1px] cursor-pointer flex items-center rounded  justify-center text-[13px] font-semibold hover:filter hover:brightness-125 hover:bg-opacity-[15%] active:filter active:brightness-90 transition-all w-8 h-8 "><?= $page + 1 ?></a> <?php } ?>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+
+                <!-- Users Pagination -->
+                <div class="flex justify-center mt-8">
+                    <div class="flex flex-wrap gap-y-2 gap-x-2">
+                        <?php foreach (range(0, $totalPagesUsers - 1) as $page): ?>
+                            <a href="<?= $GLOBALS['rootUrl'] . '/index.php?page=administration&nb=' . ($page + 1) . '#utilisateurs' ?>"
+                                class="<?= (int)$nb === (int)$page + 1 ? 'bg-purple-600 text-white' : 'bg-white/10 text-slate-300 hover:bg-white/20'; ?> text-white w-6 h-6 sm:w-8 sm:h-8 text-xs rounded-lg flex items-center justify-center font-medium transition-all duration-200 hover:scale-105">
+                                <?= $page + 1 ?>
+                            </a>
+                        <?php endforeach; ?>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Events Section -->
+            <?php if ($activeEvents != null || $inactiveEvents != null): ?>
+                <div class="mb-12">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h2 class="text-xl sm:text-2xl font-bold font-cabin text-white mb-1">Événements</h2>
+                            <p class="text-slate-400 text-sm sm:text-base">Gérez et validez les événements de la plateforme</p>
                         </div>
                     </div>
 
+                    <!-- Inactive Events -->
+                    <?php if ($inactiveEvents != null): ?>
+                        <div class="mb-8">
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-2">
+                                <div class="flex items-center space-x-3">
+                                    <h3 class="text-lg sm:text-xl font-semibold text-orange-400 font-cabin" id="evenements_inactifs">En attente de validation</h3>
+                                    <span class="bg-orange-500/20 text-orange-300 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
+                                        <?= count($inactiveEvents) ?> événements
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Desktop Table View -->
+                            <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl overflow-hidden">
+                                <div class="overflow-x-auto">
+                                    <table class="w-full">
+                                        <thead class="bg-black/20 border-b border-white/10">
+                                            <tr class="text-left">
+                                                <th class="p-3 text-slate-300 font-medium text-sm">Réf</th>
+                                                <th class="p-3 text-slate-300 font-medium text-sm">Titre</th>
+                                                <th class="p-3 text-slate-300 font-medium text-sm hidden lg:table-cell">Lieu</th>
+                                                <th class="p-3 text-slate-300 font-medium text-sm">Date</th>
+                                                <th class="p-3 text-slate-300 font-medium text-sm hidden xl:table-cell">Description</th>
+                                                <th class="p-3 text-slate-300 font-medium text-sm hidden lg:table-cell">Organisateur</th>
+                                                <th class="p-3 text-slate-300 font-medium text-sm">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-white/10">
+                                            <?php foreach ($inactiveEvents as $inactiveEvent): ?>
+                                                <tr class="hover:bg-white/5 transition-colors">
+                                                    <td class="p-3 text-slate-400 font-mono text-xs">#<?= $inactiveEvent['idEvenement'] ?></td>
+                                                    <td class="p-3">
+                                                        <div class="text-white font-medium text-sm"><?= $inactiveEvent['titre'] ?></div>
+                                                        <div class="text-slate-400 text-xs lg:hidden"><?= $inactiveEvent['nomLieu'] ?></div>
+                                                    </td>
+                                                    <td class="p-3 text-slate-300 text-sm hidden lg:table-cell"><?= $inactiveEvent['nomLieu'] ?></td>
+                                                    <td class="p-3 text-slate-300 text-sm"><?= $inactiveEvent['dateEvenement'] ?></td>
+                                                    <td class="p-3 text-slate-400 max-w-xs hidden xl:table-cell">
+                                                        <div class="line-clamp-2 text-xs">
+                                                            <?= $inactiveEvent['description'] ?>
+                                                        </div>
+                                                    </td>
+                                                    <td class="p-3 text-slate-300 text-sm hidden lg:table-cell"><?= $inactiveEvent['designationOrganisateur'] ?></td>
+                                                    <td class="p-3">
+                                                        <div class="flex space-x-1">
+                                                            <form action="<?= $GLOBALS['rootUrl'] . "/index.php?page=administration" ?>" method="POST" class="inline">
+                                                                <input type="hidden" name="idEvenement" value="<?= htmlspecialchars($inactiveEvent['idEvenement']); ?>">
+                                                                <button type="submit" name="validateEvent" value="validate" class="bg-emerald-600 hover:bg-emerald-700 text-white px-2 py-1 rounded text-xs font-medium transition-colors duration-200 flex items-center space-x-1">
+                                                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                                                                    </svg>
+                                                                    <span class="hidden md:inline">Valider</span>
+                                                                </button>
+                                                            </form>
+                                                            <form action="<?= $GLOBALS['rootUrl'] . "/index.php?page=administration" ?>" method="POST" class="inline">
+                                                                <input type="hidden" name="idEvenement" value="<?= htmlspecialchars($inactiveEvent['idEvenement']); ?>">
+                                                                <button type="submit" name="deleteEvent" value="delete" class="bg-red-600 hover:bg-red-700 text-white px-2 py-1 rounded text-xs font-medium transition-colors duration-200 flex items-center space-x-1">
+                                                                    <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                                                    </svg>
+                                                                    <span class="hidden md:inline">Refuser</span>
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Pagination -->
+                            <div class="flex justify-center mt-4">
+                                <div class="flex space-x-1 sm:space-x-2">
+                                    <?php foreach (range(0, $totalPagesInactiveEvents - 1) as $page): ?>
+                                        <a href="<?= $GLOBALS['rootUrl'] . '/index.php?page=administration&nb_ina=' . ($page + 1) . '#evenements_inactifs' ?>"
+                                            class="<?= (int)$nb_ina === (int)$page + 1 ? 'bg-orange-600 text-white' : 'bg-white/10 text-slate-300 hover:bg-white/20'; ?> w-6 h-6 sm:w-8 sm:h-8 text-xs rounded-lg flex items-center justify-center font-medium transition-all duration-200 hover:scale-105">
+                                            <?= $page + 1 ?>
+                                        </a>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+
+                    <!-- Active Events -->
+                    <?php if ($activeEvents != null): ?>
+                        <div>
+                            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-4 gap-2">
+                                <div class="flex items-center space-x-3">
+                                    <h3 class="text-lg sm:text-xl font-semibold text-emerald-400 font-cabin" id="evenements_actifs">Événements actifs</h3>
+                                    <span class="bg-emerald-500/20 text-emerald-300 px-3 py-1 rounded-full text-xs sm:text-sm font-medium">
+                                        <?= count($activeEvents) ?> événements
+                                    </span>
+                                </div>
+                            </div>
+
+                            <!-- Desktop Table View -->
+                            <div class="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl overflow-hidden">
+                                <div class="overflow-x-auto">
+                                    <table class="w-full">
+                                        <thead class="bg-black/20 border-b border-white/10">
+                                            <tr class="text-left">
+                                                <th class="p-3 text-slate-300 font-medium text-sm">Réf</th>
+                                                <th class="p-3 text-slate-300 font-medium text-sm">Titre</th>
+                                                <th class="p-3 text-slate-300 font-medium text-sm hidden lg:table-cell">Lieu</th>
+                                                <th class="p-3 text-slate-300 font-medium text-sm">Date</th>
+                                                <th class="p-3 text-slate-300 font-medium text-sm hidden xl:table-cell">Description</th>
+                                                <th class="p-3 text-slate-300 font-medium text-sm hidden lg:table-cell">Organisateur</th>
+                                                <th class="p-3 text-slate-300 font-medium text-sm">Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-white/10">
+                                            <?php foreach ($activeEvents as $activeEvent): ?>
+                                                <tr class="hover:bg-white/5 transition-colors">
+                                                    <td class="p-3 text-slate-400 font-mono text-xs">#<?= $activeEvent['idEvenement'] ?></td>
+                                                    <td class="p-3">
+                                                        <div class="text-white font-medium text-sm"><?= $activeEvent['titre'] ?></div>
+                                                        <div class="text-slate-400 text-xs lg:hidden"><?= $activeEvent['nomLieu'] ?></div>
+                                                    </td>
+                                                    <td class="p-3 text-slate-300 text-sm hidden lg:table-cell"><?= $activeEvent['nomLieu'] ?></td>
+                                                    <td class="p-3 text-slate-300 text-sm"><?= $activeEvent['dateEvenement'] ?></td>
+                                                    <td class="p-3 text-slate-400 max-w-xs hidden xl:table-cell">
+                                                        <div class="line-clamp-2 text-xs">
+                                                            <?= $activeEvent['description'] ?>
+                                                        </div>
+                                                    </td>
+                                                    <td class="p-3 text-slate-300 text-sm hidden lg:table-cell"><?= $activeEvent['designationOrganisateur'] ?></td>
+                                                    <td class="p-3">
+                                                        <form action="administration.php" method="POST" class="inline">
+                                                            <input type="hidden" name="idEvenement" value="<?= $activeEvent['idEvenement'] ?>">
+                                                            <button type="submit" name="deleteEvent" value="Supprimer" class="bg-red-600 hover:bg-red-700 text-white px-2 py-1 rounded text-xs font-medium transition-colors duration-200 flex items-center space-x-1">
+                                                                <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                                                                </svg>
+                                                                <span class="hidden md:inline">Supprimer</span>
+                                                            </button>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Pagination -->
+                            <div class="flex justify-center mt-4">
+                                <div class="flex space-x-1 sm:space-x-2">
+                                    <?php foreach (range(0, $totalPagesActiveEvents - 1) as $page): ?>
+                                        <a href="<?= $GLOBALS['rootUrl'] . '/index.php?page=administration&nb_act=' . ($page + 1) . '#evenements_actifs' ?>"
+                                            class="<?= (int)$nb_act === (int)$page + 1 ? 'bg-emerald-600 text-white' : 'bg-white/10 text-slate-300 hover:bg-white/20'; ?> w-6 h-6 sm:w-8 sm:h-8 text-xs rounded-lg flex items-center justify-center font-medium transition-all duration-200 hover:scale-105">
+                                            <?= $page + 1 ?>
+                                        </a>
+                                    <?php endforeach; ?>
+                                </div>
+                            </div>
+                        </div>
+                    <?php endif; ?>
                 </div>
             <?php endif; ?>
         </div>
-
-
-
-
-
-
     </div>
-</div>
+
+    <script>
+        function toggleForm(userId) {
+            const form = document.getElementById(`form_${userId}`);
+            const icon = document.getElementById(`icon_${userId}`);
+
+            if (form && icon) {
+                form.classList.toggle('hidden');
+                icon.classList.toggle('rotate-180');
+            }
+        }
+    </script>

@@ -548,11 +548,13 @@
 
             if (!isset($_SESSION['idUtilisateur'])) {
                 echo ("Accès refusé : Vous n'êtes pas connecté.");
+                header("Location: " . $GLOBALS['rootUrl'] . "/index.php?page=connexion");
                 return;
             }
 
             if (!in_array("Administrateur", $_SESSION['roles'])) {
                 echo ("Accès refusé : Vous n'êtes pas un administrateur.");
+                header("Location: " . $GLOBALS['rootUrl'] . "/index.php?page=connexion");
                 return;
             }
 
@@ -560,7 +562,7 @@
 
             if ((bool)$disconnect) {
                 disconnect();
-                header("Location: " . $GLOBALS['rootUrl'] . "/index.php?page=" . "administration");
+                header("Location: " . $GLOBALS['rootUrl'] . "/index.php?page=" . "accueil");
             }
 
             $users = getUsers($option, $rowsPerPage);

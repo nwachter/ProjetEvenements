@@ -1,13 +1,13 @@
-<div class="container mx-auto p-8 bg-gray-900 text-white rounded-lg shadow-lg">
-    <h1 class="text-3xl font-bold mb-6">Profil</h1>
+<div class="min-h-screen text-white max-w-7xl min-w-0 mt-12  max-md:w-full sm:mx-auto bg-gradient-to-r from-[#050321]/90 via-[#05031b]/90 to-[#05031b]/70 border-[1px] backdrop-blur-md border-white/10 rounded-xl py-3 px-4 sm:px-8 sm:pt-10 pt-6">
+    <h1 class="text-3xl font-bold mb-6 font-cabin">Profil de <?php echo $_SESSION['prenom']; ?></h1>
     <div class="w-full mb-4">
-        <div class="text-center text-lg text-red-500 mb-4"><?php if (isset($error_message)) echo $error_message; ?></div>
-        <div class="text-center text-lg text-aero mb-4"><?php if (isset($message)) echo $message; ?></div>
+        <div class="text-center text-md text-red-500 mb-4"><?php if (isset($error_message)) echo $error_message; ?></div>
+        <div class="text-center text-md text-aero mb-4"><?php if (isset($message)) echo $message; ?></div>
     </div>
 
-    <div class="grid gap-8 grid-cols-1 md:grid-cols-2">
-        <div class="w-full max-w-4xl mx-auto p-4 sm:p-6 bg-gray-800 bg-opacity-70 rounded-lg shadow-lg text-white">
-            <h3 class="text-3xl font-semibold mb-6 text-center text-melon">Profil Utilisateur</h3>
+    <div class="grid gap-4 grid-cols-1 md:grid-cols-2">
+        <div class="w-full max-w-4xl mx-auto p-4 sm:p-6 bg-[#050321]/90 bg-opacity-70 rounded-lg shadow-lg text-white">
+            <h3 class="text-2xl font-semibold mb-6  text-start  font-caudex text-melon">Informations du profil</h3>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                 <?php
                 $icons = [
@@ -22,12 +22,12 @@
                 foreach ($userInfo[0] as $key => $value):
                     $icon = $icons[$key] ?? $icons['nom'];
                 ?>
-                    <div class="flex items-center p-4 bg-gray-700 rounded-lg transition-all hover:bg-gray-600">
+                    <div class="flex items-center p-4 bg-white/20 rounded-lg transition-all hover:bg-white/[26%] hover:shadow-lg">
                         <i class="text-melon mr-4 text-2xl h-[24px] w-[24px] sm:text-xl sm:h-[20px] sm:w-[20px] <?php echo $icon; ?>"></i>
 
                         <div class="min-w-0">
-                            <p class="text-sm text-gray-400 capitalize sm:text-xs hyphens-auto"><?php echo $key; ?></p>
-                            <p class="text-lg font-semibold sm:text-base break-words hyphens-auto">
+                            <p class="text-[13px] text-gray-400 capitalize sm:text-xs hyphens-auto"><?php echo $key; ?></p>
+                            <p class="text-[14px] font-semibold sm:text-base text-white/90 break-words hyphens-auto">
                                 <?php
                                 if (is_array($value)) {
                                     echo implode(', ', $value);
@@ -41,39 +41,40 @@
                 <?php endforeach; ?>
             </div>
         </div>
+        <hr class="separator my-6 h-[0.5px] border-t-0 bg-neutral-100/10 dark:bg-white/10" />
 
-        <div class="bg-gray-800 p-6 rounded-lg shadow-md">
-            <h3 class="text-2xl font-semibold text-melon mb-4">Modifier le Mot de Passe</h3>
+        <div class="bg-[#050321]/90 p-6 rounded-lg shadow-md">
+            <h3 class="text-2xl font-semibold text-melon  font-caudex mb-4">Modifier le Mot de Passe</h3>
             <form action="/index.php?page=profil" id="motDePasse_form" name="motDePasse_form" method="POST">
                 <fieldset class="space-y-4">
 
                     <div class="flex flex-col space-y-2">
                         <label for="old_motDePasse" class="text-sm">Ancien mot de passe</label>
-                        <input type="password" id="old_motDePasse" name="old_motDePasse" class="p-2 bg-gray-700 text-white rounded-lg outline-none focus:ring-2 focus:ring-indigo-500">
+                        <input type="password" id="old_motDePasse" name="old_motDePasse" class="px-4 py-2 bg-white/10 border-[1px] border-white/[15%] shadow-md text-white rounded-lg outline-none focus:ring-2 focus:ring-indigo-500">
 
                         <label for="new_motDePasse" class="text-sm">Nouveau mot de passe</label>
-                        <input type="password" id="new_motDePasse" name="new_motDePasse" class="p-2 bg-gray-700 text-white rounded-lg outline-none focus:ring-2 focus:ring-indigo-500">
+                        <input type="password" id="new_motDePasse" name="new_motDePasse" class="px-4 py-2 bg-white/10 border-[1px] border-white/[15%] shadow-md text-white rounded-lg outline-none focus:ring-2 focus:ring-indigo-500">
 
                         <label for="confirm_motDePasse" class="text-sm">Confirmation mot de passe</label>
-                        <input type="password" id="confirm_motDePasse" name="confirm_motDePasse" class="p-2 bg-gray-700 text-white rounded-lg outline-none focus:ring-2 focus:ring-indigo-500">
+                        <input type="password" id="confirm_motDePasse" name="confirm_motDePasse" class="px-4 py-2 bg-white/10 border-[1px] border-white/[15%] shadow-md text-white rounded-lg outline-none focus:ring-2 focus:ring-indigo-500">
                     </div>
                     <div class="text-center mt-4">
-                        <input type="submit" name="submit_motDePasse" value="Modifier le mot de passe" class="bg-gradient-to-r from-auburn to-persian-red text-white px-6 py-2 font-semibold rounded-lg shadow-md hover:brightness-110 transition duration-300">
+                        <input type="submit" name="submit_motDePasse" value="Modifier le mot de passe" class="bg-gradient-to-r font-roboto text-md font-semibold from-auburn to-persian-red text-white px-6 py-2 font-semibold rounded-lg shadow-md hover:brightness-110 transition duration-300">
                     </div>
                 </fieldset>
             </form>
         </div>
     </div>
-
+    <hr class="separator my-6 h-[0.5px] border-t-0 bg-neutral-100/10 dark:bg-white/10" />
     <?php if (isset($eventsOrganizedByUser) && $eventsOrganizedByUser != null): ?>
-        <div class=" mt-12 w-full">
-            <h2 class="text-4xl font-semibold  font-caudex text-melon mb-6">Événements organisés</h2>
+        <div class="px-4 sm:px-6 mt-12 w-full">
+            <h2 class="text-2xl font-semibold  font-caudex text-melon mb-6">Événements organisés</h2>
 
             <?php foreach ($eventsOrganizedByUser as $event): ?>
-                <div class="bg-gradient-to-br from-gray-800 to-gray-900 p-6 rounded-lg shadow-lg mb-6 transition-transform hover:scale-105 hover:shadow-xl duration-300">
+                <div class="bg-gradient-to-br from-white/[15%] to-white/10 p-6 rounded-lg shadow-lg mb-6 transition-transform hover:scale-105 hover:shadow-xl duration-300">
                     <article>
-                        <div class="flex gap-4 w-full min-w-0 items-center">
-                            <h3 class="text-2xl flex-none basis-[90%] font-bold mb-2">
+                        <div class="flex gap-4 w-full pr-2 min-w-0 items-center">
+                            <h3 class="text-xl flex-none basis-[90%] font-bold mb-2">
                                 <div class="font-bentham text-selective-yellow">
                                     <span class="text-sm hyphens-auto break-words text-gray-500 pr-2">
                                         (<?= $event['idEvenement'] ?>)
@@ -87,8 +88,8 @@
                         </div>
 
                         <div class="mb-2.5">
-                            <h4 class="text-lg font-medium opacity-80 text-aero"><?= htmlspecialchars($event['nomLieu']); ?></h4>
-                            <p class="text-gray-300 text-[14px]"><?= htmlspecialchars($event['description']); ?></p>
+                            <h4 class="text-sm font-medium opacity-80 text-aero"><?= htmlspecialchars($event['nomLieu']); ?></h4>
+                            <p class="text-gray-300 text-[12px]"><?= htmlspecialchars($event['description']); ?></p>
                         </div>
                         <div class="flex gap-4 w-full min-w-0 items-center">
                             <div class="text-gray-400 italic text-sm hyphens-auto break-words "><?= htmlspecialchars($event['nom'] . " " . $event['prenom']); ?></div>
@@ -101,7 +102,7 @@
 
                         <form action="index.php?page=modifier_evenement<?php echo "&idEvenement=" . $event['idEvenement']; ?>" method="POST" id="form_modifier" class="mt-4">
                             <input type="hidden" name="idEvenement" id="idEvenement" value="<?= $event['idEvenement'] ?>">
-                            <input type="submit" name="submit_modifier" id="submit_modifier" value="Modifier l'événement" class="bg-gradient-to-r font-semibold from-melon to-selective-yellow text-white px-6 py-2 rounded-lg shadow-md hover:brightness-110 transition duration-300">
+                            <input type="submit" name="submit_modifier" id="submit_modifier" value="Modifier l'événement" class="bg-gradient-to-r text-sm font-semibold from-melon to-selective-yellow text-white px-6 py-2 rounded-lg shadow-md font-roboto  hover:brightness-110 transition duration-300">
                         </form>
                     </article>
                 </div>
@@ -110,7 +111,7 @@
     <?php endif; ?>
 
 
-    <div class="w-full pt-6">
+    <div class="w-full pt-2 pb-4">
         <div class="flex w-[50%] mx-auto h-8 rounded justify-center gap-2 items-center">
             <?php foreach (range(0, $totalPagesEvents - 1) as $page) {
             ?>
